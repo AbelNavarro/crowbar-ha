@@ -264,9 +264,10 @@ class PacemakerServiceObject < ServiceObject
         new_allocation = false
 
         networks.each do |network|
-          next if net_svc.virtual_ip_assigned? "default", network, "host", cluster_vhostname
-          net_svc.allocate_virtual_ip "default", network, "host", cluster_vhostname
-          new_allocation = true
+          until net_svc.virtual_ip_assigned_count "default", network, "host", cluster_vhostname < nodes.size
+            net_svc.allocate_virtual_ip "default", network, "host", cluster_vhostname
+            new_allocation = true
+          end
         end
 
         [true, new_allocation]
