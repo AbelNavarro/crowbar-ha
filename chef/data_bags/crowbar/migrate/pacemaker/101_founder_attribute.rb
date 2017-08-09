@@ -4,7 +4,7 @@ def upgrade(ta, td, a, d)
     begin
       node = Chef::Node.load(name)
       next unless node.key?("pacemaker")
-      founder_name = name if node["pacemaker"]["founder"] == name
+      founder_name = name if node["pacemaker"]["founder"]
       node["pacemaker"].delete("founder")
       node.save
     rescue Net::HTTPServerException => e
