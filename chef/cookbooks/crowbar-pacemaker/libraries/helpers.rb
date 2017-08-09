@@ -182,7 +182,7 @@ module CrowbarPacemakerHelper
       node
     else
       begin
-        Node.load(node[:pacemaker][:founder])
+        Chef::Node.load(node[:pacemaker][:founder])
       rescue Net::HTTPServerException => e
         raise "No cluster founder found!" if e.response.code == "404"
         raise e
