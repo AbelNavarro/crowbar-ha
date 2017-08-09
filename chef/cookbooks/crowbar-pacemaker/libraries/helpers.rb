@@ -187,6 +187,7 @@ module CrowbarPacemakerHelper
         raise "No cluster founder found!" if e.response.code == "404"
         raise e
       end
+    end
   end
 
   # Returns an Array of names matching each corosync node in the same cluster
