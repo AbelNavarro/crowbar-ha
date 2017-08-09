@@ -51,6 +51,7 @@ module CrowbarPacemakerCIBAttribute
     elsif output !~ /^scope=nodes\s+name=#{attribute}\s+value=(.*)$/
       raise "Unexpected output when fetching pacemaker attribute: #{output}"
     end
+    Chef::Log.info("CrowbarPacemakerCIBAttribute.get: #{node}:#{attribute}:#{$1}")
     $1
   end
 
@@ -61,6 +62,7 @@ module CrowbarPacemakerCIBAttribute
     validate_attribute(attribute)
     validate_value(default)
     `crm_attribute --name=#{attribute} --node=#{node} --update=#{value} &> /dev/null`
+    Chef::Log.info("CrowbarPacemakerCIBAttribute.set: #{node}:#{attribute}:#{value}")
   end
 
   def self.unset(node, attribute)
