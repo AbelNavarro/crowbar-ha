@@ -53,7 +53,7 @@ begin
   end # Timeout
 rescue Timeout::Error
   raise "Cluster founder not setup!"
-end
+end unless CrowbarPacemakerHelper.is_cluster_founder?(node)
 
 dirty = false
 
