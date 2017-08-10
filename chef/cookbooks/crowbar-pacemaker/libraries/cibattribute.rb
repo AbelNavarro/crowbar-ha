@@ -33,7 +33,7 @@ module CrowbarPacemakerCIBAttribute
   end
 
   def self.validate_value(value)
-    validate_simple(attribute, "value")
+    validate_simple(value, "value")
   end
 
   def self.get(node, attribute, default)
