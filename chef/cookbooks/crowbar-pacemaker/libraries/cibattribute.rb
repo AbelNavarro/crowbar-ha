@@ -60,7 +60,7 @@ module CrowbarPacemakerCIBAttribute
     # $ crm_attribute --name=crowbar_sync-pacemaker_setup --node=d52-54-77-77-77-01 --update=1
     validate_node(node)
     validate_attribute(attribute)
-    validate_value(default)
+    validate_value(value)
     `crm_attribute --name=#{attribute} --node=#{node} --update=#{value} &> /dev/null`
     Chef::Log.info("CrowbarPacemakerCIBAttribute.set: #{node}:#{attribute}:#{value}")
   end
