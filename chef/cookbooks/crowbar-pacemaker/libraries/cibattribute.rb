@@ -45,6 +45,11 @@ module CrowbarPacemakerCIBAttribute
     validate_node(node)
     validate_attribute(attribute)
     validate_value(default)
+
+    unless system ("crm_node -q")
+      return default
+    end
+
     output = `crm_attribute --name=#{attribute} --node=#{node} --query --default=#{default} 2>&1`
     if output !~ /^Could not map name=/
       raise "Cannot fetch attribute for node unknown to pacemaker (#{output})"
