@@ -168,9 +168,13 @@ module CrowbarPacemakerSynchronization
     return unless CrowbarPacemakerHelper.cluster_enabled?(node)
 
     cluster_name = CrowbarPacemakerHelper.cluster_name(node)
-    return if node[:pacemaker][:sync_marks][cluster_name].nil?
+    sync_marks = node
+      .fetch(":pacemaker", {})
+      .fetch(":sync_marks", {})
+      .fetch(cluster_name, nil)
+    return if sync_marks.nil?
 
-    node[:pacemaker][:sync_marks][cluster_name].each_key do |mark|
+    sync_marks.each_key do |mark|
       CrowbarPacemakerCIBAttribute.set(node[:hostname], "#{prefix}#{mark}", "1")
     end
   end
