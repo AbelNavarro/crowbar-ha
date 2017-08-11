@@ -17,6 +17,10 @@
 require "rexml/document"
 
 module CrowbarPacemakerCIBAttribute
+  def self.cib_up_for_node?
+    system ("crm_node -q")
+  end
+
   def self.validate_simple(string, type)
     # only accept alphanumeric characters as well as - and _
     if string !~ /^[-\w]*$/

@@ -126,6 +126,9 @@ module CrowbarPacemakerSynchronization
     if CrowbarPacemakerHelper.being_upgraded?(node)
       Chef::Log.debug("Node is being upgraded." \
         "Skipping wait loop for all other cluster nodes.")
+    elsif not CrowbarPacemakerCIBAttribute.cib_up_for_node?
+      Chef::Log.debug("Node does not have CIB connection." \
+        "Skipping wait loop for all other cluster nodes.")
     else
       begin
         Chef::Log.info("Checking if all other cluster nodes have set #{mark}...")
