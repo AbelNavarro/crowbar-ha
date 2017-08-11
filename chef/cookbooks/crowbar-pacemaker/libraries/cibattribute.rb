@@ -51,7 +51,7 @@ module CrowbarPacemakerCIBAttribute
     end
 
     output = `crm_attribute --name=#{attribute} --node=#{node} --query --default=#{default} 2>&1`
-    if output !~ /^Could not map name=/
+    if output =~ /^Could not map name=/
       raise "Cannot fetch attribute for node unknown to pacemaker (#{output})"
     elsif output !~ /^scope=nodes\s+name=#{attribute}\s+value=(.*)$/
       raise "Unexpected output when fetching pacemaker attribute: #{output}"
