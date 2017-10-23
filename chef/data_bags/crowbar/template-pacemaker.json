@@ -52,7 +52,7 @@
       "op_defaults": {
         "monitor": {
           "on-fail": "block"
-	}
+        }
       }
     }
   },
