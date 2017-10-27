@@ -14,10 +14,22 @@
 # limitations under the License.
 #
 
-use_inline_resources if defined?(use_inline_resources)
+require "shellwords"
+
+this_dir = ::File.dirname(__FILE__)
+require ::File.expand_path("../pacemaker/libraries/pacemaker", this_dir)
+require ::File.expand_path("../pacemaker/libraries/chef/mixin/pacemaker", this_dir)
+
+include Chef::Mixin::Pacemaker::RunnableResource
 
 action :create do
   name = new_resource.name
+
+  if @current_resource_definition.nil?
+    create_resource(name)
+  else
+    update_resource(name)
+  end
 
   pacemaker_primitive name do
     agent agent
@@ -29,6 +41,10 @@ action :create do
 end
 
 action :update do
+  unless @current_resource_definition.nil?
+    update_resource(new_resource.name)
+  end
+
   pacemaker_primitive name do
     agent agent
     op op
@@ -46,6 +62,8 @@ action :delete do
     meta meta
     action :delete
   end
+  
+  delete_runnable_resource
 end
 
 action :start do
@@ -66,5 +84,17 @@ action :stop do
     meta meta
     action :stop
   end
+end
+
+def cib_object_class
+  ::CrowbarPacemaker::Resource::Primitive
+end
+
+def load_current_resource
+  standard_load_current_resource
+end
+
+def resource_attrs
+  [:agent, :params, :meta]
 end
 
