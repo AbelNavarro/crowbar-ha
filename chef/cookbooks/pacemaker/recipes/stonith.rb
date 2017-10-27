@@ -28,7 +28,7 @@ when "manual"
 when "sbd"
   include_recipe "pacemaker::sbd"
 
-  pacemaker_primitive "stonith-sbd" do
+  crowbar_primitive "stonith-sbd" do
     agent node[:pacemaker][:stonith][:sbd][:agent]
     action [:create, :start]
   end
