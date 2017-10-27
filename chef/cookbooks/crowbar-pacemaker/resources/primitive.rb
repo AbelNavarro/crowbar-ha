@@ -13,6 +13,8 @@
 # limitations under the License.
 #
 
+resource_name :primitive
+
 actions :create, :update, :delete, :start, :stop
 
 default_action :create
