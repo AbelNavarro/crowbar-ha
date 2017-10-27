@@ -17,6 +17,8 @@
 use_inline_resources if defined?(use_inline_resources)
 
 action :create do
+  name = new_resource.name
+
   pacemaker_primitive name do
     agent agent
     op op
