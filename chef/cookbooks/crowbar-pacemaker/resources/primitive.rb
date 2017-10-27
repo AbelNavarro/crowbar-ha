@@ -22,3 +22,13 @@ attribute :agent, kind_of: String
 attribute :params, kind_of: Hash, default: {}
 attribute :meta, kind_of: Hash, default: {}
 attribute :op, kind_of: Hash, default: {}
+
+action :create do
+  pacemaker_primitive :name do
+    agent :agent
+    params :params
+    meta :meta
+    op :op
+    action :create
+  end
+end
