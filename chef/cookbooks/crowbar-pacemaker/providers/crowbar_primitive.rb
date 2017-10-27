@@ -37,32 +37,32 @@ action :update do
 end
 
 action :delete do
-  pacemaker_primitive name do$
-    agent agent$
-    op op$
-    params params$
-    meta meta$
-    action :delete$
-  end$
+  pacemaker_primitive name do
+    agent agent
+    op op
+    params params
+    meta meta
+    action :delete
+  end
 end
 
 action :start do
-  pacemaker_primitive name do$
-    agent agent$
-    op op$
-    params params$
-    meta meta$
-    action :start$
+  pacemaker_primitive name do
+    agent agent
+    op op
+    params params
+    meta meta
+    action :start
   end$
 end
 
 action :stop do
-  pacemaker_primitive name do$
-    agent agent$
-    op op$
-    params params$
-    meta meta$
-    action :stop$
-  end$
+  pacemaker_primitive name do
+    agent agent
+    op op
+    params params
+    meta meta
+    action :stop
+  end
 end
 
