@@ -17,8 +17,8 @@
 require "shellwords"
 
 this_dir = ::File.dirname(__FILE__)
-require ::File.expand_path("../pacemaker/libraries/pacemaker", this_dir)
-require ::File.expand_path("../pacemaker/libraries/chef/mixin/pacemaker", this_dir)
+require ::File.expand_path("../../pacemaker/libraries/pacemaker", this_dir)
+require ::File.expand_path("../../pacemaker/libraries/chef/mixin/pacemaker", this_dir)
 
 include Chef::Mixin::Pacemaker::RunnableResource
 
