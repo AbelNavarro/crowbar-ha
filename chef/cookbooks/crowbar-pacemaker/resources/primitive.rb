@@ -13,8 +13,6 @@
 # limitations under the License.
 #
 
-resource_name :primitive
-
 actions :create, :update, :delete, :start, :stop
 
 default_action :create
@@ -25,12 +23,8 @@ attribute :params, kind_of: Hash, default: {}
 attribute :meta, kind_of: Hash, default: {}
 attribute :op, kind_of: Hash, default: {}
 
-action :create do
-  pacemaker_primitive :name do
-    agent :agent
-    params :params
-    meta :meta
-    op :op
-    action :create
-  end
+def initialize(*args)
+  super
+  @resource_name = :primitive
+  @action = :create
 end
