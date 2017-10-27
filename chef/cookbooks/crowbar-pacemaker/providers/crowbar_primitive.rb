@@ -53,7 +53,7 @@ action :start do
     params params
     meta meta
     action :start
-  end$
+  end
 end
 
 action :stop do
