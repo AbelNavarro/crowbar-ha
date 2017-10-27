@@ -61,7 +61,7 @@ when "shared"
     raise message
   end
 
-  pacemaker_primitive "stonith-shared" do
+  crowbar_primitive "stonith-shared" do
     agent "stonith:#{agent}"
     op node[:pacemaker][:stonith][:shared][:op]
     params primitive_params
@@ -108,7 +108,7 @@ when "per_node"
 
     transaction_objects = []
 
-    pacemaker_primitive stonith_resource do
+    crowbar_primitive stonith_resource do
       agent "stonith:#{agent}"
       params primitive_params
       op node[:pacemaker][:stonith][:per_node][:op]
