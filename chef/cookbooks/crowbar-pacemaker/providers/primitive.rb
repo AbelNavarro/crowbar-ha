@@ -1,4 +1,5 @@
 action :create do
+  log "XXX :create"
   pacemaker_primitive :name do
     agent :agent
     params :params
@@ -9,6 +10,7 @@ action :create do
 end
 
 action :update do
+  log "XXX :update"
   pacemaker_primitive :name do
     agent :agent
     params :params
