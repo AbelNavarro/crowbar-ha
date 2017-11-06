@@ -73,7 +73,7 @@ if node[:pacemaker][:haproxy][:clusters].key?(cluster_name) && node[:pacemaker][
   node[:pacemaker][:haproxy][:clusters][cluster_name][:networks].each do |network, enabled|
     ip_addr = CrowbarPacemakerHelper.cluster_vip(node, network)
     vip_primitive = "vip-#{network}-#{cluster_vhostname}"
-    crowbar_primitive vip_primitive do
+    crowbar_pacemaker_primitive vip_primitive do
       agent "ocf:heartbeat:IPaddr2"
       params ({
         "ip" => ip_addr
@@ -88,7 +88,7 @@ if node[:pacemaker][:haproxy][:clusters].key?(cluster_name) && node[:pacemaker][
     transaction_objects << "pacemaker_location[#{location_name}]"
   end
 
-  crowbar_primitive service_name do
+  primitive service_name do
     agent node[:pacemaker][:haproxy][:agent]
     op node[:pacemaker][:haproxy][:op]
     action :update
