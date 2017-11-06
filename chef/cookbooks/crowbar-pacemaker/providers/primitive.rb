@@ -1,5 +1,5 @@
 action :create do
-  log "XXX :create"
+  Chef::Log.debug("XXX :create")
   pacemaker_primitive :name do
     agent :agent
     params :params
@@ -10,7 +10,7 @@ action :create do
 end
 
 action :update do
-  log "XXX :update"
+  Chef::Log.debug("XXX :update")
   pacemaker_primitive :name do
     agent :agent
     params :params
