@@ -88,7 +88,7 @@ if node[:pacemaker][:haproxy][:clusters].key?(cluster_name) && node[:pacemaker][
     transaction_objects << "pacemaker_location[#{location_name}]"
   end
 
-  primitive service_name do
+  crowbar_pacemaker_primitive service_name do
     agent node[:pacemaker][:haproxy][:agent]
     op node[:pacemaker][:haproxy][:op]
     action :update
