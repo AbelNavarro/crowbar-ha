@@ -1,6 +1,6 @@
 action :create do
   Chef::Log.warn("XXX :create")
-  pacemaker_primitive :name do
+  pacemaker_primitive new_resource.name do
     agent :agent
     params :params
     meta :meta
@@ -11,7 +11,7 @@ end
 
 action :update do
   Chef::Log.warn("XXX :update")
-  pacemaker_primitive :name do
+  pacemaker_primitive new_resource.name do
     agent :agent
     params :params
     meta :meta
@@ -21,7 +21,7 @@ action :update do
 end
 
 action :delete do
-  pacemaker_primitive :name do
+  pacemaker_primitive new_resource.name do
     agent :agent
     params :params
     meta :meta
@@ -31,7 +31,7 @@ action :delete do
 end
 
 action :start do
-  pacemaker_primitive :name do
+  pacemaker_primitive new_resource.name do
     agent :agent
     params :params
     meta :meta
@@ -41,7 +41,7 @@ action :start do
 end
 
 action :stop do
-  pacemaker_primitive :name do
+  pacemaker_primitive new_resource.name do
     agent :agent
     params :params
     meta :meta
