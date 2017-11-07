@@ -85,7 +85,7 @@ if node[:pacemaker][:haproxy][:clusters].key?(cluster_name) && node[:pacemaker][
       only_if { CrowbarPacemakerHelper.is_cluster_founder?(node) }
     end
     vip_primitives << vip_primitive
-    transaction_objects << "pacemaker_primitive[#{vip_primitive}]"
+    transaction_objects << "crowbar_pacemaker_primitive[#{vip_primitive}]"
     location_name = openstack_pacemaker_controller_only_location_for vip_primitive
     transaction_objects << "pacemaker_location[#{location_name}]"
   end
@@ -97,7 +97,7 @@ if node[:pacemaker][:haproxy][:clusters].key?(cluster_name) && node[:pacemaker][
     action :update
     only_if { CrowbarPacemakerHelper.is_cluster_founder?(node) }
   end
-  transaction_objects << "pacemaker_primitive[#{service_name}]"
+  transaction_objects << "crowbar_pacemaker_primitive[#{service_name}]"
 
   group_name = "g-#{service_name}"
   pacemaker_group group_name do
