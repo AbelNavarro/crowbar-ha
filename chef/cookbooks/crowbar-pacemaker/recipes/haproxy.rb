@@ -75,7 +75,7 @@ if node[:pacemaker][:haproxy][:clusters].key?(cluster_name) && node[:pacemaker][
     vip_primitive = "vip-#{network}-#{cluster_vhostname}"
 
     Chef::Log.warn("XXX crowbar_pacemaker_primitive vip_primitive")
-    crowbar_pacemaker_primitive vip_primitive do
+    crowbar_primitive vip_primitive do
       agent "ocf:heartbeat:IPaddr2"
       params ({
         "ip" => ip_addr
@@ -91,7 +91,7 @@ if node[:pacemaker][:haproxy][:clusters].key?(cluster_name) && node[:pacemaker][
   end
 
   Chef::Log.warn("XXX crowbar_pacemaker_primitive service_name")
-  crowbar_pacemaker_primitive service_name do
+  crowbar_primitive service_name do
     agent node[:pacemaker][:haproxy][:agent]
     op node[:pacemaker][:haproxy][:op]
     action :update
