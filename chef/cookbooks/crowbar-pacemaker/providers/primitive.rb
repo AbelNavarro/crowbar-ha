@@ -21,6 +21,7 @@ action :update do
 end
 
 action :delete do
+  Chef::Log.warn("XXX :delete")
   pacemaker_primitive new_resource.name do
     agent new_resource.agent
     params new_resource.params
@@ -31,6 +32,7 @@ action :delete do
 end
 
 action :start do
+  Chef::Log.warn("XXX :start")
   pacemaker_primitive new_resource.name do
     agent new_resource.agent
     params new_resource.params
@@ -41,6 +43,7 @@ action :start do
 end
 
 action :stop do
+  Chef::Log.warn("XXX :stop")
   pacemaker_primitive new_resource.name do
     agent new_resource.agent
     params new_resource.params
