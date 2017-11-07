@@ -49,9 +49,3 @@ action :stop do
     action :stop
   end
 end
-
-module CrowbarPacemaker
-  class CrowbarPacemaker::Resource::Primitive
-    register_type :primitive
-  end
-end
