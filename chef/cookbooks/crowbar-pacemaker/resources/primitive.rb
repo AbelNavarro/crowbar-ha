@@ -28,5 +28,5 @@ def initialize(*args)
   @resource_name = :primitive
   @action = :create
 
-  Chef::Log.warn("XXX initialize")
+  Chef::Log.warn("XXX initialize #{@resource_name}")
 end

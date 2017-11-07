@@ -50,21 +50,8 @@ action :stop do
   end
 end
 
-def cib_object_class
-  ::CrowbarPacemaker::Resource::Primitive
+module CrowbarPacemaker
+  class CrowbarPacemaker::Resource::Primitive
+    register_type :primitive
+  end
 end
-
-def load_current_resource
-  Chef::Log.warn("XXX load_current_resource")
-  standard_load_current_resource
-end
-
-def resource_attrs
-  [:agent, :params, :meta]
-end
-
-def create_resource(name)
-  Chef::Log.warn("XXX create_resource")
-  standard_create_resource
-end
-
