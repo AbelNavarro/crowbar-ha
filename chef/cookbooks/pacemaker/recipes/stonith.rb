@@ -28,7 +28,7 @@ when "manual"
 when "sbd"
   include_recipe "pacemaker::sbd"
 
-  crowbar_primitive "stonith-sbd" do
+  crowbar_pacemaker_primitive "stonith-sbd" do
     agent node[:pacemaker][:stonith][:sbd][:agent]
     action [:create, :start]
   end
@@ -61,7 +61,7 @@ when "shared"
     raise message
   end
 
-  crowbar_primitive "stonith-shared" do
+  crowbar_pacemaker_primitive "stonith-shared" do
     agent "stonith:#{agent}"
     op node[:pacemaker][:stonith][:shared][:op]
     params primitive_params
@@ -108,7 +108,7 @@ when "per_node"
 
     transaction_objects = []
 
-    crowbar_primitive stonith_resource do
+    crowbar_pacemaker_primitive stonith_resource do
       agent "stonith:#{agent}"
       params primitive_params
       op node[:pacemaker][:stonith][:per_node][:op]
