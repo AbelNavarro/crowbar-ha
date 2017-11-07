@@ -5,8 +5,8 @@ action :create do
     params new_resource.params
     meta new_resource.meta
     op new_resource.op
-    action :create
-  end
+    action :nothing
+  end.run_action(:create)
 end
 
 action :update do
