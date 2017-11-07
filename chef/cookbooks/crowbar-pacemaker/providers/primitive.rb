@@ -55,6 +55,7 @@ def cib_object_class
 end
 
 def load_current_resource
+  Chef::Log.warn("XXX load_current_resource")
   standard_load_current_resource
 end
 
@@ -63,6 +64,7 @@ def resource_attrs
 end
 
 def create_resource(name)
+  Chef::Log.warn("XXX create_resource")
   standard_create_resource
 end
 
