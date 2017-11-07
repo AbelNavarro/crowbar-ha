@@ -49,3 +49,20 @@ action :stop do
     action :stop
   end
 end
+
+def cib_object_class
+  ::CrowbarPacemaker::Resource::Primitive
+end
+
+def load_current_resource
+  standard_load_current_resource
+end
+
+def resource_attrs
+  [:agent, :params, :meta]
+end
+
+def create_resource(name)
+  standard_create_resource
+end
+
