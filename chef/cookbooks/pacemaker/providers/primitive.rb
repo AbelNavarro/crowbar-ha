@@ -87,7 +87,7 @@ def update_resource(name)
 
   Chef::Log.warn("XXX node[:pacemaker][:config][:op_defaults]: #{node[:pacemaker][:config][:op_defaults]}")
   #op_defaults = CrowbarPacemakerHelper.op_defaults(node)
-  op_defaults = node[:pacemaker][:config][:op_defaults]
+  op_d = node[:pacemaker][:config][:op_defaults]
 
   ops.each { |option| Chef::Log.warn("XXX option3: #{option}") }
   
