@@ -55,6 +55,7 @@ class Pacemaker::Resource::Primitive < Pacemaker::Resource
   end
 
   def definition_from_attributes
+    Chef::Log.warn("XXX definition_from_attributes")
     str = "#{self.class.object_type} #{name} #{agent}"
     %w(params meta op).each do |data_type|
       unless send(data_type).empty?
