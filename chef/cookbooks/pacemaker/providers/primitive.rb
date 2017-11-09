@@ -90,6 +90,7 @@ def update_resource(name)
   op_d = node[:pacemaker][:config][:op_defaults]
 
   ops.each { |option| Chef::Log.warn("XXX option3: #{option}") }
+  ops.each { |option| Chef::Log.warn("XXX option4: #{option}") }
   
   Chef::Log.warn("XXX op_defaults: #{op_defaults}")
 
