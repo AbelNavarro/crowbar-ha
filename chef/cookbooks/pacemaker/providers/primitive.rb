@@ -82,6 +82,7 @@ def update_resource(name)
 
   unless new_resource.op["monitor"].nil? || new_resource.op["monitor"]["on-fail"].nil?
     op_defaults = CrowbarPacemakerHelper.op_defaults(node)
+    op_defaults.each { |op_def| Chef::Log.warn("XXX op_default: #{op_def}") }
     new_resource.op["monitor"] = new_resource.op["monitor"].merge("on-fail" => op_defaults["monitor"]["on-fail"])
   end
 
