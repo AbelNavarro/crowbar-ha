@@ -81,6 +81,8 @@ def update_resource(name)
   ops = new_resource.op
   ops.each { |option| Chef::Log.warn("XXX option: #{option}") }
 
+  Chef::Log.warn("XXX ops['monitor'] not nil") unless ops["monitor"].nil?
+
   unless ops["monitor"].nil? || ops["monitor"]["on-fail"].nil?
     Chef::Log.warn("XXX ops loop")
     op_defaults = CrowbarPacemakerHelper.op_defaults(node)
