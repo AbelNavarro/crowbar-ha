@@ -37,6 +37,7 @@ action :create do
 end
 
 action :update do
+  Chef::Log.warn("XXX :update : #{new_resource.describe}")
   unless @current_resource_definition.nil?
     update_resource(new_resource.name)
   end
