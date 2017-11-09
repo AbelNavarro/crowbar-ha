@@ -78,7 +78,7 @@ def update_resource(name)
   Chef::Log.warn("XXX update_resource: #{name}")
   Chef::Log.warn("XXX @current_resource: #{@current_resource}")
   Chef::Log.warn("XXX new_resource: #{new_resource}")
-  Chef::Log.warn("XXX new_resource(op): #{new_resource[:op]}")
+  new_resource.op.each { |option| Chef::Log.warn("XXX option: #{option}") }
   current_agent = @current_resource.agent
   unless current_agent.include? ":"
     current_agent = "ocf:heartbeat:" + current_agent
