@@ -11,6 +11,7 @@ class Pacemaker::Resource::Primitive < Pacemaker::Resource
   attr_accessor :agent, :params, :op
 
   def initialize(*args)
+    Chef::Log.warn("XXX initialize")
     super(*args)
 
     @agent = nil
@@ -21,6 +22,7 @@ class Pacemaker::Resource::Primitive < Pacemaker::Resource
   end
 
   def parse_definition
+    Chef::Log.warn("XXX parse_definition")
     unless @definition =~ /\A#{self.class.object_type} (\S+) (\S+)/
       raise Pacemaker::CIBObject::DefinitionParseError, \
             "Couldn't parse definition '#{@definition}'"
@@ -48,6 +50,7 @@ class Pacemaker::Resource::Primitive < Pacemaker::Resource
   end
 
   def op_string
+    Chef::Log.warn("XXX op_string")
     self.class.op_string(op)
   end
 
