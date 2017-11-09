@@ -93,7 +93,7 @@ def update_resource(name)
     ops["monitor"] = ops["monitor"].merge("on-fail" => op_defaults["monitor"]["on-fail"])
   end
 
-  ops.each { |option| Chef::Log.warn("XXX option-after: #{option}") }
+  ops.each { |opt| Chef::Log.warn("XXX option-after: #{opt}") }
 
   current_agent = @current_resource.agent
   unless current_agent.include? ":"
