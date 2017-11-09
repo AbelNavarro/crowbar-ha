@@ -94,7 +94,7 @@ def update_resource(name)
   
   Chef::Log.warn("XXX op_defaults: #{op_defaults}")
 
-  unless ops["monitor"]? || ops["monitor"]["on-fail"]? || op_defaults?
+  unless ops["monitor"].nil? || ops["monitor"]["on-fail"].nil? || op_defaults.nil?
     Chef::Log.warn("XXX ops loop")
     op_defaults.each { |op_def| Chef::Log.warn("XXX op_default: #{op_def}") }
     ops["monitor"] = ops["monitor"].merge("on-fail" => op_defaults["monitor"]["on-fail"])
