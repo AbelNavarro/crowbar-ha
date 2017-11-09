@@ -78,16 +78,17 @@ def update_resource(name)
   Chef::Log.warn("XXX update_resource: #{name}")
   Chef::Log.warn("XXX @current_resource: #{@current_resource}")
   Chef::Log.warn("XXX new_resource: #{new_resource}")
-  new_resource.op.each { |option| Chef::Log.warn("XXX option: #{option}") }
+  ops = new_resource.op
+  ops.each { |option| Chef::Log.warn("XXX option: #{option}") }
 
-  unless new_resource.op["monitor"].nil? || new_resource.op["monitor"]["on-fail"].nil?
-    Chef::Log.warn("XXX new_resource.op loop")
+  unless ops["monitor"].nil? || ops["monitor"]["on-fail"].nil?
+    Chef::Log.warn("XXX ops loop")
     op_defaults = CrowbarPacemakerHelper.op_defaults(node)
     op_defaults.each { |op_def| Chef::Log.warn("XXX op_default: #{op_def}") }
-    new_resource.op["monitor"] = new_resource.op["monitor"].merge("on-fail" => op_defaults["monitor"]["on-fail"])
+    ops["monitor"] = ops["monitor"].merge("on-fail" => op_defaults["monitor"]["on-fail"])
   end
 
-  new_resource.op.each { |option| Chef::Log.warn("XXX option-after: #{option}") }
+  ops.each { |option| Chef::Log.warn("XXX option-after: #{option}") }
 
   current_agent = @current_resource.agent
   unless current_agent.include? ":"
