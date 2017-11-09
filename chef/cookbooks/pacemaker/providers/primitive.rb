@@ -82,7 +82,7 @@ def update_resource(name)
   ops.each { |option| Chef::Log.warn("XXX option: #{option}") }
   ops.each { |option| Chef::Log.warn("XXX option2: #{option}") }
   Chef::Log.warn("XXX ops.inspect: #{ops.inspect}")
-  Chef::Log.warn("XXX ops monitor not nil") unless ops["monitor"].nil?
+  Chef::Log.warn("XXX ops monitor not nil") unless ops["monitor"]?
   #Chef::Log.warn("XXX ops['monitor']['on-fail'] not nil") unless ops["monitor"]["on-fail"].nil?
 
   #Chef::Log.warn("XXX node[:pacemaker][:config][:op_defaults]: #{node[:pacemaker][:config][:op_defaults]}")
@@ -94,7 +94,7 @@ def update_resource(name)
   
   Chef::Log.warn("XXX op_defaults: #{op_defaults}")
 
-  unless ops["monitor"].nil? || ops["monitor"]["on-fail"].nil? || op_defaults.nil?
+  unless ops["monitor"]? || ops["monitor"]["on-fail"]? || op_defaults?
     Chef::Log.warn("XXX ops loop")
     op_defaults.each { |op_def| Chef::Log.warn("XXX op_default: #{op_def}") }
     ops["monitor"] = ops["monitor"].merge("on-fail" => op_defaults["monitor"]["on-fail"])
