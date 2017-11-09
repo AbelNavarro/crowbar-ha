@@ -60,10 +60,12 @@ def cib_object_class
 end
 
 def load_current_resource
+  Chef::Log.warn("XXX load_current_resource")
   standard_load_current_resource
 end
 
 def resource_attrs
+  Chef::Log.warn("XXX resource_attrs")
   [:agent, :params, :meta]
 end
 
@@ -76,7 +78,7 @@ def update_resource(name)
   Chef::Log.warn("XXX update_resource: #{name}")
   Chef::Log.warn("XXX @current_resource: #{@current_resource}")
   Chef::Log.warn("XXX new_resource: #{new_resource}")
-  Chef::Log.warn("XXX new_resource: #{new_resource.op.describe}")
+  Chef::Log.warn("XXX new_resource(op): #{new_resource.op}")
   current_agent = @current_resource.agent
   unless current_agent.include? ":"
     current_agent = "ocf:heartbeat:" + current_agent
