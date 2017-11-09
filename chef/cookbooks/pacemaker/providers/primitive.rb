@@ -80,6 +80,7 @@ def update_resource(name)
   Chef::Log.warn("XXX new_resource: #{new_resource}")
   ops = new_resource.op
   ops.each { |option| Chef::Log.warn("XXX option: #{option}") }
+  ops.each { |option| Chef::Log.warn("XXX option2: #{option}") }
 
   Chef::Log.warn("XXX ops['monitor'] not nil") unless ops["monitor"].nil?
   Chef::Log.warn("XXX ops['monitor']['on-fail'] not nil") unless ops["monitor"]["on-fail"].nil?
