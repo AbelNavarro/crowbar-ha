@@ -83,11 +83,11 @@ def update_resource(name)
   ops.each { |option| Chef::Log.warn("XXX option2: #{option}") }
 
   Chef::Log.warn("XXX ops['monitor'] not nil") unless ops["monitor"].nil?
-  Chef::Log.warn("XXX ops['monitor']['on-fail'] not nil") unless ops["monitor"]["on-fail"].nil?
+  #Chef::Log.warn("XXX ops['monitor']['on-fail'] not nil") unless ops["monitor"]["on-fail"].nil?
 
-  Chef::Log.warn("XXX node[:pacemaker][:config][:op_defaults]: #{node[:pacemaker][:config][:op_defaults]}")
+  #Chef::Log.warn("XXX node[:pacemaker][:config][:op_defaults]: #{node[:pacemaker][:config][:op_defaults]}")
   #op_defaults = CrowbarPacemakerHelper.op_defaults(node)
-  op_d = node[:pacemaker][:config][:op_defaults]
+  #op_d = node[:pacemaker][:config][:op_defaults]
 
   ops.each { |option| Chef::Log.warn("XXX option3: #{option}") }
   ops.each { |option| Chef::Log.warn("XXX option4: #{option}") }
