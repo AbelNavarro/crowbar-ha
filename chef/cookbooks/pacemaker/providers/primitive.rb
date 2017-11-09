@@ -26,6 +26,7 @@ require ::File.expand_path("../libraries/chef/mixin/pacemaker", this_dir)
 include Chef::Mixin::Pacemaker::RunnableResource
 
 action :create do
+  Chef::Log.warn("XXX :create : #{new_resource.describe}")
   name = new_resource.name
 
   if @current_resource_definition.nil?
@@ -70,6 +71,7 @@ def create_resource(name)
 end
 
 def update_resource(name)
+  Chef::Log.warn("XXX update_resource: #{name}")
   current_agent = @current_resource.agent
   unless current_agent.include? ":"
     current_agent = "ocf:heartbeat:" + current_agent
