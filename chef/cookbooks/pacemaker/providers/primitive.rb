@@ -82,7 +82,7 @@ def update_resource(name)
   ops.each { |option| Chef::Log.warn("XXX option: #{option}") }
   Chef::Log.warn("XXX ops.has_key?(monitor): #{ops.has_key?("monitor")}")
   Chef::Log.warn("XXX ops monitor has key") unless ops.has_key?("monitor")
-  #Chef::Log.warn("XXX ops['monitor']['on-fail'] not nil") unless ops["monitor"]["on-fail"].nil?
+  Chef::Log.warn("XXX !ops["monitor"].has_key('on-fail')") unless ?["monitor"].has_key("on-fail")
 
   #Chef::Log.warn("XXX node[:pacemaker][:config][:op_defaults]: #{node[:pacemaker][:config][:op_defaults]}")
   op_defaults = CrowbarPacemakerHelper.op_defaults(node)
@@ -92,7 +92,7 @@ def update_resource(name)
   
   Chef::Log.warn("XXX op_defaults: #{op_defaults}")
 
-  unless ops["monitor"].nil? || ops["monitor"]["on-fail"].nil? || op_defaults.nil?
+  unless !ops.has_key("monitor") || !ops["monitor"].has_key("on-fail")? || op_defaults.nil?
     Chef::Log.warn("XXX ops loop")
     op_defaults.each { |op_def| Chef::Log.warn("XXX op_default: #{op_def}") }
     ops["monitor"] = ops["monitor"].merge("on-fail" => op_defaults["monitor"]["on-fail"])
