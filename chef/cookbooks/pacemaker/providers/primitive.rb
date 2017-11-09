@@ -80,13 +80,12 @@ def update_resource(name)
   Chef::Log.warn("XXX new_resource: #{new_resource}")
   ops = new_resource.op
   ops.each { |option| Chef::Log.warn("XXX option: #{option}") }
-  Chef::Log.warn("XXX ops.to_s: #{ops.to_s}")
   Chef::Log.warn("XXX ops.has_key?(monitor): #{ops.has_key?("monitor")}")
   Chef::Log.warn("XXX ops monitor has key") unless ops.has_key?("monitor")
   #Chef::Log.warn("XXX ops['monitor']['on-fail'] not nil") unless ops["monitor"]["on-fail"].nil?
 
   #Chef::Log.warn("XXX node[:pacemaker][:config][:op_defaults]: #{node[:pacemaker][:config][:op_defaults]}")
-  #op_defaults = CrowbarPacemakerHelper.op_defaults(node)
+  op_defaults = CrowbarPacemakerHelper.op_defaults(node)
   #op_d = node[:pacemaker][:config][:op_defaults]
 
   ops.each { |option| Chef::Log.warn("XXX option3: #{option}") }
