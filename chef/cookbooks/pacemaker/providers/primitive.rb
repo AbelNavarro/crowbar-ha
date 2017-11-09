@@ -86,7 +86,8 @@ def update_resource(name)
   Chef::Log.warn("XXX ops['monitor']['on-fail'] not nil") unless ops["monitor"]["on-fail"].nil?
 
   Chef::Log.warn("XXX node[:pacemaker][:config][:op_defaults]: #{node[:pacemaker][:config][:op_defaults]}")
-  op_defaults = CrowbarPacemakerHelper.op_defaults(node)
+  #op_defaults = CrowbarPacemakerHelper.op_defaults(node)
+  op_defaults = node[:pacemaker][:config][:op_defaults]
 
   ops.each { |option| Chef::Log.warn("XXX option3: #{option}") }
   
