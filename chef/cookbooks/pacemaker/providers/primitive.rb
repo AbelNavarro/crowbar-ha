@@ -84,7 +84,7 @@ def update_resource(name)
   Chef::Log.warn("XXX ops monitor has key") unless !ops.has_key?("monitor")
   monitor = ops["monitor"]
   Chef::Log.warn("XXX monitor: #{monitor}")
-  Chef::Log.warn("XXX monitor.describre: #{monitor.describe}")
+  Chef::Log.warn("XXX monitor.inspect: #{monitor.inspect}")
 
   #Chef::Log.warn("XXX !ops['monitor'].has_key('on-fail')") unless !ops["monitor"].has_key?("on-fail")
 
