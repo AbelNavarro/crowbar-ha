@@ -95,7 +95,7 @@ def update_resource(name)
   op_defaults = CrowbarPacemakerHelper.op_defaults(node)
   #op_d = node[:pacemaker][:config][:op_defaults]
   #
-  Chef::Log.warn("XXX monitor.class(2): #{monitor.class}")
+  Chef::Log.warn("XXX monitor.inspect(2): #{monitor.inspect}")
 
   ops.each { |option| Chef::Log.warn("XXX option3: #{option}") }
   
