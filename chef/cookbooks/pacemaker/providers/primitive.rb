@@ -83,7 +83,7 @@ def update_resource(name)
   Chef::Log.warn("XXX ops.has_key?(monitor): #{ops.has_key?("monitor")}")
   Chef::Log.warn("XXX ops monitor has key") unless !ops.has_key?("monitor")
   monitor = ops["monitor"]
-  Chef::Log.warn("XXX monitor: #{monitor}")
+  Chef::Log.warn("XXX ops.inspect: #{ops.inspect}")
   Chef::Log.warn("XXX monitor.inspect: #{monitor.inspect}")
 
   Chef::Log.warn("XXX ops.class: #{ops.class}")
@@ -94,7 +94,8 @@ def update_resource(name)
   #Chef::Log.warn("XXX node[:pacemaker][:config][:op_defaults]: #{node[:pacemaker][:config][:op_defaults]}")
   op_defaults = CrowbarPacemakerHelper.op_defaults(node)
   #op_d = node[:pacemaker][:config][:op_defaults]
-  #
+  
+  Chef::Log.warn("XXX ops.inspect(2): #{ops.inspect}")
   Chef::Log.warn("XXX monitor.inspect(2): #{monitor.inspect}")
 
   ops.each { |option| Chef::Log.warn("XXX option3: #{option}") }
