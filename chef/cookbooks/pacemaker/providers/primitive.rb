@@ -107,6 +107,7 @@ def update_resource(name)
 
   # XXX add manually op_defaults
   op_defaults = {}
+  op_defaults["monitor"] = {}
   op_defaults["monitor"]["on-fail"] = "fence"
   Chef::Log.warn("XXX op_defaults(modified): #{op_defaults}")
 
