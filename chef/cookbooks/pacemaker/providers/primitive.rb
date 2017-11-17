@@ -98,7 +98,7 @@ def update_resource(name)
   #Chef::Log.warn("XXX ops.inspect(2): #{ops.inspect}")
   #Chef::Log.warn("XXX monitor.inspect(2): #{monitor.inspect}")
 
-  Chef::Log.warn("XXX monitor.current_default: #{monitor.current_default}")
+  Chef::Log.warn("XXX monitor.current_default: #{monitor.current_default}, #{monitor.current_default.class}")
 
   ops.each { |op| Chef::Log.warn("XXX option: #{op}, #{op.inspect}, #{op.class}") }
   
