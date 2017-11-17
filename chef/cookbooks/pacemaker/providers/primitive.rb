@@ -92,7 +92,7 @@ def update_resource(name)
   #Chef::Log.warn("XXX !ops['monitor'].has_key('on-fail')") unless !ops["monitor"].has_key?("on-fail")
 
   #Chef::Log.warn("XXX node[:pacemaker][:config][:op_defaults]: #{node[:pacemaker][:config][:op_defaults]}")
-  #op_defaults = CrowbarPacemakerHelper.op_defaults(node)
+  op_defaults = CrowbarPacemakerHelper.op_defaults(node)
   #op_d = node[:pacemaker][:config][:op_defaults]
 
   #Chef::Log.warn("XXX ops.inspect(2): #{ops.inspect}")
