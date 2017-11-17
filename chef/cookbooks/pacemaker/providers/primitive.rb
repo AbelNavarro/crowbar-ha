@@ -26,7 +26,7 @@ require ::File.expand_path("../libraries/chef/mixin/pacemaker", this_dir)
 include Chef::Mixin::Pacemaker::RunnableResource
 
 action :create do
-  Chef::Log.warn("XXX :create")
+  #Chef::Log.warn("XXX :create")
   name = new_resource.name
 
   if @current_resource_definition.nil?
@@ -37,7 +37,7 @@ action :create do
 end
 
 action :update do
-  Chef::Log.warn("XXX :update")
+  #Chef::Log.warn("XXX :update")
   unless @current_resource_definition.nil?
     update_resource(new_resource.name)
   end
@@ -65,12 +65,12 @@ def load_current_resource
 end
 
 def resource_attrs
-  Chef::Log.warn("XXX resource_attrs")
+  #Chef::Log.warn("XXX resource_attrs")
   [:agent, :params, :meta]
 end
 
 def create_resource(name)
-  Chef::Log.warn("XXX create_resource")
+  #Chef::Log.warn("XXX create_resource")
   standard_create_resource
 end
 
