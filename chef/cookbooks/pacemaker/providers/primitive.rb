@@ -114,7 +114,8 @@ def update_resource(name)
   unless op_defaults.nil?
     Chef::Log.warn("XXX ops loop")
     op_defaults.each { |op_def| Chef::Log.warn("XXX op_default: #{op_def}") }
-    ops["monitor"] = ops["monitor"].merge("on-fail" => op_defaults["monitor"]["on-fail"])
+    #ops["monitor"] = ops["monitor"].merge("on-fail" => op_defaults["monitor"]["on-fail"])
+    monitor.current_default = monitor.current_default.merge("on-fail" => op_defaults["monitor"]["on-fail"])
   end
 
   ops.each { |opt| Chef::Log.warn("XXX option-after: #{opt}") }
