@@ -11,7 +11,7 @@ class Pacemaker::Resource::Primitive < Pacemaker::Resource
   attr_accessor :agent, :params, :op
 
   def initialize(*args)
-    Chef::Log.warn("XXX initialize")
+    #Chef::Log.warn("XXX initialize")
     super(*args)
 
     @agent = nil
@@ -22,7 +22,7 @@ class Pacemaker::Resource::Primitive < Pacemaker::Resource
   end
 
   def parse_definition
-    Chef::Log.warn("XXX parse_definition")
+    #Chef::Log.warn("XXX parse_definition")
     unless @definition =~ /\A#{self.class.object_type} (\S+) (\S+)/
       raise Pacemaker::CIBObject::DefinitionParseError, \
             "Couldn't parse definition '#{@definition}'"
@@ -50,12 +50,12 @@ class Pacemaker::Resource::Primitive < Pacemaker::Resource
   end
 
   def op_string
-    Chef::Log.warn("XXX op_string")
+    #Chef::Log.warn("XXX op_string")
     self.class.op_string(op)
   end
 
   def definition_from_attributes
-    Chef::Log.warn("XXX definition_from_attributes")
+    #Chef::Log.warn("XXX definition_from_attributes")
     str = "#{self.class.object_type} #{name} #{agent}"
     %w(params meta op).each do |data_type|
       unless send(data_type).empty?
@@ -77,7 +77,7 @@ class Pacemaker::Resource::Primitive < Pacemaker::Resource
   end
 
   def self.op_string(ops)
-    Chef::Log.warn("XXX self.op_string")
+    #Chef::Log.warn("XXX self.op_string")
     return "" if !ops || ops.empty?
     ops.sort.map do |op, attrs|
       if attrs.empty?
