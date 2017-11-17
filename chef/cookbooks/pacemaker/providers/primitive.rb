@@ -99,8 +99,10 @@ def update_resource(name)
   #Chef::Log.warn("XXX monitor.inspect(2): #{monitor.inspect}")
 
   Chef::Log.warn("XXX monitor.current_default: #{monitor.current_default}, #{monitor.current_default.class}")
+  Chef::Log.warn("XXX ops.inspect: #{ops.inspect}")
 
   ops.each { |op| Chef::Log.warn("XXX option: #{op}, #{op.inspect}, #{op.class}") }
+  Chef::Log.warn("XXX ops.inspect: #{ops.inspect}")
   
   #Chef::Log.warn("XXX op_defaults: #{op_defaults}")
 
@@ -109,6 +111,7 @@ def update_resource(name)
   op_defaults["monitor"] = {}
   op_defaults["monitor"]["on-fail"] = "block"
   Chef::Log.warn("XXX op_defaults(modified): #{op_defaults}")
+  Chef::Log.warn("XXX ops.inspect: #{ops.inspect}")
 
   #unless !ops.has_key?("monitor") || op_defaults.nil?
   unless op_defaults.nil?
