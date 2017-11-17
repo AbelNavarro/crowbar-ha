@@ -105,6 +105,10 @@ def update_resource(name)
   
   Chef::Log.warn("XXX op_defaults: #{op_defaults}")
 
+  # XXX add manually op_defaults
+  op_defaults["monitor"]["on-fail"] = "fence"
+  Chef::Log.warn("XXX op_defaults(modified): #{op_defaults}")
+
   unless !ops.has_key?("monitor") || !ops["monitor"].has_key?("on-fail") || op_defaults.nil?
     Chef::Log.warn("XXX ops loop")
     op_defaults.each { |op_def| Chef::Log.warn("XXX op_default: #{op_def}") }
