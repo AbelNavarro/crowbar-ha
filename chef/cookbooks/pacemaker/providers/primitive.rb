@@ -112,6 +112,7 @@ def update_resource(name)
   end
 
   ops.each { |opt| Chef::Log.warn("XXX option-after: #{opt}") }
+  Chef::Log.warn("XXX monitor.current_default(2): #{monitor.current_default}")
 
   current_agent = @current_resource.agent
   unless current_agent.include? ":"
