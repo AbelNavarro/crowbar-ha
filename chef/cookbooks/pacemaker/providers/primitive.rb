@@ -120,7 +120,7 @@ def update_resource(name)
     #ops["monitor"] = ops["monitor"].merge("on-fail" => op_defaults["monitor"]["on-fail"])
     #monitor.default = monitor.current_default.merge("on-fail" => op_defaults["monitor"]["on-fail"])
     #monitor ||= { "on-fail" => "pepe" }
-    monitor = monitor.merge("on-fail" => "bartolo")
+    ops.set["monitor"] = {"on-fail" => "bartolo"}
   end
 
   ops.each { |opt| Chef::Log.warn("XXX option-after: #{opt}") }
