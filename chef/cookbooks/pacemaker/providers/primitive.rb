@@ -80,7 +80,7 @@ def update_resource(name)
   #Chef::Log.warn("XXX new_resource: #{new_resource}")
   ops = new_resource.op
   #ops.each { |option| Chef::Log.warn("XXX option: #{option}") }
-  #Chef::Log.warn("XXX ops.has_key?(monitor): #{ops.has_key?("monitor")}")
+  Chef::Log.warn("XXX ops.has_key?(monitor): NO") unless ops.has_key?("monitor")
   #Chef::Log.warn("XXX ops monitor has key") unless !ops.has_key?("monitor")
   monitor = ops["monitor"]
   Chef::Log.warn("XXX ops.inspect: #{ops.inspect}")
