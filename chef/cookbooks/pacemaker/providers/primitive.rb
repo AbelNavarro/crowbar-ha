@@ -110,6 +110,7 @@ def update_resource(name)
   op_defaults = {}
   op_defaults["monitor"] = {}
   op_defaults["monitor"]["on-fail"] = "stop"
+  op_defaults_monitor = op_defaults["monitor"]
   #Chef::Log.warn("XXX op_defaults(modified): #{op_defaults}")
   #Chef::Log.warn("XXX ops.inspect: #{ops.inspect}")
 
