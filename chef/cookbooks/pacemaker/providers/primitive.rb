@@ -121,7 +121,7 @@ def update_resource(name)
     #monitor.default = monitor.current_default.merge("on-fail" => op_defaults["monitor"]["on-fail"])
     #ops["monitor"] = { "on-fail" => "pepe" } 
     if ops["monitor"].has_key?("on-fail")
-      ops["monitor"]["on-fail"] = op_defaults["monitor"]["on-fail"]
+      ops = op_defaults["monitor"]["on-fail"]
     else
       ops["monitor"] = op_defaults["monitor"]
     end
