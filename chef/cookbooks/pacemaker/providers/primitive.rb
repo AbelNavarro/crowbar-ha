@@ -82,7 +82,7 @@ def update_resource(name)
   #ops.each { |option| Chef::Log.warn("XXX option: #{option}") }
   #Chef::Log.warn("XXX ops.has_key?(monitor): #{ops.has_key?("monitor")}")
   #Chef::Log.warn("XXX ops monitor has key") unless !ops.has_key?("monitor")
-  monitor = ops["monitor"]
+  monitor = ops[:monitor]
   Chef::Log.warn("XXX ops.inspect: #{ops.inspect}")
   #Chef::Log.warn("XXX monitor.inspect: #{monitor.inspect}")
 
@@ -120,12 +120,12 @@ def update_resource(name)
     #ops["monitor"] = ops["monitor"].merge("on-fail" => op_defaults["monitor"]["on-fail"])
     #monitor.default = monitor.current_default.merge("on-fail" => op_defaults["monitor"]["on-fail"])
     #ops["monitor"] = { "on-fail" => "pepe" } 
-    if ops["monitor"].component_has_key?("on-fail")
+    if ops[:monitor].has_key?("on-fail")
       Chef::Log.warn("XXX ops['monitor'].has_key('on-fail')")
       ops = op_defaults["monitor"]["on-fail"]
     else
       Chef::Log.warn("XXX ops['monitor'].has_key('on-fail')... NOT")
-      ops["monitor"] = op_defaults["monitor"]
+      ops[:monitor] = op_defaults["monitor"]
     end
     #ops.set["monitor"] = {"on-fail" => "bartolo"}
   end
