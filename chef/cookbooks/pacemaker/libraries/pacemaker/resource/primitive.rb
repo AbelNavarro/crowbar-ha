@@ -63,7 +63,7 @@ class Pacemaker::Resource::Primitive < Pacemaker::Resource
         str << continuation_line(data_string)
       end
     end
-    Chef::Log.warn("XXX definition_from_attributes: #{str}")
+    #Chef::Log.warn("XXX definition_from_attributes: #{str}")
     str
   end
 
@@ -77,7 +77,7 @@ class Pacemaker::Resource::Primitive < Pacemaker::Resource
   end
 
   def self.op_string(ops)
-    Chef::Log.warn("XXX self.op_string(ops): #{ops.inspect}")
+    #Chef::Log.warn("XXX self.op_string(ops): #{ops.inspect}")
     return "" if !ops || ops.empty?
     ops.sort.map do |op, attrs|
       if attrs.empty?
