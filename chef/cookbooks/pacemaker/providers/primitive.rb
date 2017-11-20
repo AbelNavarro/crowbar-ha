@@ -120,7 +120,11 @@ def update_resource(name)
     #ops["monitor"] = ops["monitor"].merge("on-fail" => op_defaults["monitor"]["on-fail"])
     #monitor.default = monitor.current_default.merge("on-fail" => op_defaults["monitor"]["on-fail"])
     #ops["monitor"] = { "on-fail" => "pepe" } 
-    ops["monitor"] = op_defaults["monitor"]
+    if ops["monitor"].has_key?("on-fail")
+      ops["monitor"]["on-fail"] = op_defaults["monitor"]["on-fail"]
+    else
+      ops["monitor"] = op_defaults["monitor"]
+    end
     #ops.set["monitor"] = {"on-fail" => "bartolo"}
   end
 
