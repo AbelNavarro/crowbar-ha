@@ -110,7 +110,6 @@ def update_resource(name)
   op_defaults = {}
   op_defaults["monitor"] = {}
   op_defaults["monitor"]["on-fail"] = "stop"
-  op_defaults_monitor = op_defaults["monitor"]
   #Chef::Log.warn("XXX op_defaults(modified): #{op_defaults}")
   #Chef::Log.warn("XXX ops.inspect: #{ops.inspect}")
 
@@ -121,7 +120,7 @@ def update_resource(name)
     #ops["monitor"] = ops["monitor"].merge("on-fail" => op_defaults["monitor"]["on-fail"])
     #monitor.default = monitor.current_default.merge("on-fail" => op_defaults["monitor"]["on-fail"])
     #ops["monitor"] = { "on-fail" => "pepe" } 
-    ops["monitor"] = op_defaults_monitor
+    ops["monitor"] = op_defaults["monitor"]
     #ops.set["monitor"] = {"on-fail" => "bartolo"}
   end
 
