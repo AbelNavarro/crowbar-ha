@@ -60,7 +60,7 @@ def cib_object_class
 end
 
 def load_current_resource
-  Chef::Log.warn("XXX load_current_resource")
+  #Chef::Log.warn("XXX load_current_resource")
   standard_load_current_resource
 end
 
@@ -79,7 +79,7 @@ def update_resource(name)
   #Chef::Log.warn("XXX @current_resource: #{@current_resource}")
   #Chef::Log.warn("XXX new_resource: #{new_resource}")
   ops = new_resource.op
-  ops.each { |option| Chef::Log.warn("XXX option: #{option}") }
+  #ops.each { |option| Chef::Log.warn("XXX option: #{option}") }
   #Chef::Log.warn("XXX ops.has_key?(monitor): #{ops.has_key?("monitor")}")
   #Chef::Log.warn("XXX ops monitor has key") unless !ops.has_key?("monitor")
   monitor = ops["monitor"]
@@ -98,11 +98,11 @@ def update_resource(name)
   #Chef::Log.warn("XXX ops.inspect(2): #{ops.inspect}")
   #Chef::Log.warn("XXX monitor.inspect(2): #{monitor.inspect}")
 
-  Chef::Log.warn("XXX monitor.current_default: #{monitor.current_default}, #{monitor.current_default.class}")
-  Chef::Log.warn("XXX ops.inspect: #{ops.inspect}")
+  #Chef::Log.warn("XXX monitor.current_default: #{monitor.current_default}, #{monitor.current_default.class}")
+  #Chef::Log.warn("XXX ops.inspect: #{ops.inspect}")
 
   #ops.each { |op| Chef::Log.warn("XXX option: #{op}, #{op.inspect}, #{op.class}") }
-  Chef::Log.warn("XXX ops.inspect: #{ops.inspect}")
+  #Chef::Log.warn("XXX ops.inspect: #{ops.inspect}")
   
   #Chef::Log.warn("XXX op_defaults: #{op_defaults}")
 
@@ -110,12 +110,12 @@ def update_resource(name)
   op_defaults = {}
   op_defaults["monitor"] = {}
   op_defaults["monitor"]["on-fail"] = "block"
-  Chef::Log.warn("XXX op_defaults(modified): #{op_defaults}")
-  Chef::Log.warn("XXX ops.inspect: #{ops.inspect}")
+  #Chef::Log.warn("XXX op_defaults(modified): #{op_defaults}")
+  #Chef::Log.warn("XXX ops.inspect: #{ops.inspect}")
 
   #unless !ops.has_key?("monitor") || op_defaults.nil?
   unless op_defaults.nil?
-    Chef::Log.warn("XXX ops loop")
+    #Chef::Log.warn("XXX ops loop")
     #op_defaults.each { |op_def| Chef::Log.warn("XXX op_default: #{op_def}") }
     #ops["monitor"] = ops["monitor"].merge("on-fail" => op_defaults["monitor"]["on-fail"])
     #monitor.default = monitor.current_default.merge("on-fail" => op_defaults["monitor"]["on-fail"])
@@ -124,9 +124,9 @@ def update_resource(name)
     #ops.set["monitor"] = {"on-fail" => "bartolo"}
   end
 
-  ops.each { |opt| Chef::Log.warn("XXX option-after: #{opt}") }
-  Chef::Log.warn("XXX ops.inspect(2): #{ops.inspect}")
-  Chef::Log.warn("XXX monitor.current_default(2): #{monitor.current_default}")
+  #ops.each { |opt| Chef::Log.warn("XXX option-after: #{opt}") }
+  #Chef::Log.warn("XXX ops.inspect(2): #{ops.inspect}")
+  #Chef::Log.warn("XXX monitor.current_default(2): #{monitor.current_default}")
 
   current_agent = @current_resource.agent
   unless current_agent.include? ":"
