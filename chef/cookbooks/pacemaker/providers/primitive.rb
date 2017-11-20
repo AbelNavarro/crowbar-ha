@@ -109,7 +109,7 @@ def update_resource(name)
   # XXX add manually op_defaults
   op_defaults = {}
   op_defaults["monitor"] = {}
-  op_defaults["monitor"]["on-fail"] = "block"
+  op_defaults["monitor"]["on-fail"] = "standby"
   #Chef::Log.warn("XXX op_defaults(modified): #{op_defaults}")
   #Chef::Log.warn("XXX ops.inspect: #{ops.inspect}")
 
