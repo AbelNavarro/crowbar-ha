@@ -89,7 +89,7 @@ def update_resource(name)
   #Chef::Log.warn("XXX ops.class: #{ops.class}")
   #Chef::Log.warn("XXX monitor.class: #{monitor.class}")
 
-  Chef::Log.warn("XXX ops['monitor'].has_key('on-fail')") unless ops["monitor"].has_key?("on-fail")
+  #Chef::Log.warn("XXX ops['monitor'].has_key('on-fail')") unless ops["monitor"].has_key?("on-fail")
 
   #Chef::Log.warn("XXX node[:pacemaker][:config][:op_defaults]: #{node[:pacemaker][:config][:op_defaults]}")
   #op_defaults = CrowbarPacemakerHelper.op_defaults(node)
@@ -121,8 +121,10 @@ def update_resource(name)
     #monitor.default = monitor.current_default.merge("on-fail" => op_defaults["monitor"]["on-fail"])
     #ops["monitor"] = { "on-fail" => "pepe" } 
     if ops["monitor"].has_key?("on-fail")
+      Chef::Log.warn("XXX ops['monitor'].has_key('on-fail')")
       ops = op_defaults["monitor"]["on-fail"]
     else
+      Chef::Log.warn("XXX ops['monitor'].has_key('on-fail')... NOT")
       ops["monitor"] = op_defaults["monitor"]
     end
     #ops.set["monitor"] = {"on-fail" => "bartolo"}
