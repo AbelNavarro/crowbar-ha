@@ -130,7 +130,7 @@ def update_resource(name)
       #Chef::Log.warn("XXX ops['monitor'].has_key('on-fail')... NOT")
       #ops.set_unless_value_present = true
       #Chef::Log.warn("XXX ops set_unless_value_present, inspect: #{ops.inspect}")
-      ops["monitor"]["on-fail"] = op_defaults["monitor"]["on-fail"]
+      ops["monitor"]["on-fail"] ||= op_defaults["monitor"]["on-fail"]
     Chef::Log.warn("XXX ops['monitor'].has_key?('on-fail')") if ops["monitor"].has_key?("on-fail")
       #ops.set_unless_value_present = false
     #end
