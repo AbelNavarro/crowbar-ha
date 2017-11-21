@@ -118,7 +118,6 @@ def update_resource(name)
 
   if ops.has_key?("monitor")
     Chef::Log.warn("XXX ops.has_key?('monitor')")
-    Chef::Log.warn("XXX ops['monitor'].has_key?('on-fail')") if ops["monitor"].has_key?("on-fail")
     #Chef::Log.warn("XXX ops loop")
     #op_defaults.each { |op_def| Chef::Log.warn("XXX op_default: #{op_def}") }
     #ops["monitor"] = ops["monitor"].merge("on-fail" => op_defaults["monitor"]["on-fail"])
@@ -132,6 +131,7 @@ def update_resource(name)
       #ops.set_unless_value_present = true
       #Chef::Log.warn("XXX ops set_unless_value_present, inspect: #{ops.inspect}")
       ops["monitor"]["on-fail"] = op_defaults["monitor"]["on-fail"]
+    Chef::Log.warn("XXX ops['monitor'].has_key?('on-fail')") if ops["monitor"].has_key?("on-fail")
       #ops.set_unless_value_present = false
     #end
     #ops.set["monitor"] = {"on-fail" => "bartolo"}
