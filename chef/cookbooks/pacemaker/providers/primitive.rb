@@ -125,7 +125,7 @@ def update_resource(name)
       ops = op_defaults["monitor"]["on-fail"]
     else
       Chef::Log.warn("XXX ops['monitor'].has_key('on-fail')... NOT")
-      ops["monitor"]["on-fail"] ||= "block" # op_defaults["monitor"]["on-fail"]
+      ops["monitor"]["on-fail"] = "block" # op_defaults["monitor"]["on-fail"]
     end
     #ops.set["monitor"] = {"on-fail" => "bartolo"}
   end
