@@ -116,9 +116,9 @@ def update_resource(name)
   #unless !ops.has_key?("monitor") || op_defaults.nil?
   #unless op_defaults.nil? || ops["monitor"].nil?
 
-  Chef::Log.warn("XXX ops['monitor'].has_key?('on-fail')") if ops["monitor"].has_key?("on-fail")
   if ops.has_key?("monitor")
     Chef::Log.warn("XXX ops.has_key?('monitor')")
+    Chef::Log.warn("XXX ops['monitor'].has_key?('on-fail')") if ops["monitor"].has_key?("on-fail")
     #Chef::Log.warn("XXX ops loop")
     #op_defaults.each { |op_def| Chef::Log.warn("XXX op_default: #{op_def}") }
     #ops["monitor"] = ops["monitor"].merge("on-fail" => op_defaults["monitor"]["on-fail"])
