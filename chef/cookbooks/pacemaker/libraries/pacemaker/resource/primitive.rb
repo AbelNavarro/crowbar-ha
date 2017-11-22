@@ -77,7 +77,7 @@ class Pacemaker::Resource::Primitive < Pacemaker::Resource
   end
 
   def self.op_string(ops)
-    Chef::Log.warn("XXX self.op_string(ops): ops: #{ops.inspect}")
+    #Chef::Log.warn("XXX self.op_string(ops): ops: #{ops.inspect}")
     return "" if !ops || ops.empty?
     #ops.sort.map do |op, attrs|
     #ops.each do |val|
@@ -85,8 +85,8 @@ class Pacemaker::Resource::Primitive < Pacemaker::Resource
     #end
 
     ops.sort.map do |op, attrs|
-      Chef::Log.warn("XXX self.op_string(ops): ops: #{op.inspect}, attrs: #{attrs.inspect}")
-      if attrs.nil? || attrs.empty?
+      #Chef::Log.warn("XXX self.op_string(ops): ops: #{op.inspect}, attrs: #{attrs.inspect}")
+      if attrs.nil? || attrs.empty? # XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         nil
       else
         # crm seems to append interval=0 when there are attributes, but no
