@@ -77,7 +77,7 @@ class Pacemaker::Resource::Primitive < Pacemaker::Resource
   end
 
   def self.op_string(ops)
-    Chef::Log.warn("XXX self.op_string(ops): #{ops.inspect}")
+    Chef::Log.warn("XXX self.op_string(ops): ops: #{ops.inspect}")
     return "" if !ops || ops.empty?
     #ops.sort.map do |op, attrs|
     #ops.each do |val|
@@ -85,7 +85,7 @@ class Pacemaker::Resource::Primitive < Pacemaker::Resource
     #end
 
     ops.sort.map do |op, attrs|
-      Chef::Log.warn("XXX self.op_string(ops): #{op.inspect}, #{attrs.inspect}")
+      Chef::Log.warn("XXX self.op_string(ops): ops: #{op.inspect}, attrs: #{attrs.inspect}")
       if attrs.empty?
         nil
       else
