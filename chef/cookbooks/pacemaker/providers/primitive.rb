@@ -135,7 +135,7 @@ def update_resource(name)
       #ops.set_unless_value_present = false
     #end
     #ops.set["monitor"] = {"on-fail" => "bartolo"}
-    ops["monitor"].send("on-fail", "fence")
+    #ops["monitor"].send("on-fail", "fence")
   end
 
   #ops.each { |opt| Chef::Log.warn("XXX option-after: #{opt}") }
