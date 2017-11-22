@@ -116,8 +116,8 @@ def update_resource(name)
   #unless !ops.has_key?("monitor") || op_defaults.nil?
   #unless op_defaults.nil? || ops["monitor"].nil?
 
-  if ops.has_key?("monitor")
-    Chef::Log.warn("XXX ops.has_key?('monitor')")
+  #if ops.has_key?("monitor")
+    #Chef::Log.warn("XXX ops.has_key?('monitor')")
     #Chef::Log.warn("XXX ops loop")
     #op_defaults.each { |op_def| Chef::Log.warn("XXX op_default: #{op_def}") }
     #ops["monitor"] = ops["monitor"].merge("on-fail" => op_defaults["monitor"]["on-fail"])
@@ -130,15 +130,15 @@ def update_resource(name)
       #Chef::Log.warn("XXX ops['monitor'].has_key('on-fail')... NOT")
       #ops.set_unless_value_present = true
       #Chef::Log.warn("XXX ops set_unless_value_present, inspect: #{ops.inspect}")
-      ops["monitor"]["on-fail"] = op_defaults["monitor"]["on-fail"]
-    Chef::Log.warn("XXX ops['monitor'].has_key?('on-fail')") if ops["monitor"].has_key?("on-fail")
+      #ops["monitor"]["on-fail"] = op_defaults["monitor"]["on-fail"]
+    #Chef::Log.warn("XXX ops['monitor'].has_key?('on-fail')") if ops["monitor"].has_key?("on-fail")
       #ops.set_unless_value_present = false
     #end
     #ops.set["monitor"] = {"on-fail" => "bartolo"}
-  end
+  #end
 
   #ops.each { |opt| Chef::Log.warn("XXX option-after: #{opt}") }
-  Chef::Log.warn("XXX ops.inspect(2): #{ops.inspect}")
+  #Chef::Log.warn("XXX ops.inspect(2): #{ops.inspect}")
   #Chef::Log.warn("XXX monitor.current_default(2): #{monitor.current_default}")
 
   current_agent = @current_resource.agent
