@@ -116,7 +116,7 @@ def update_resource(name)
   #unless !ops.has_key?("monitor") || op_defaults.nil?
   #unless op_defaults.nil? || ops["monitor"].nil?
 
-  #if ops.has_key?("monitor")
+  if ops.has_key?("monitor")
     #Chef::Log.warn("XXX ops.has_key?('monitor')")
     #Chef::Log.warn("XXX ops loop")
     #op_defaults.each { |op_def| Chef::Log.warn("XXX op_default: #{op_def}") }
@@ -135,10 +135,11 @@ def update_resource(name)
       #ops.set_unless_value_present = false
     #end
     #ops.set["monitor"] = {"on-fail" => "bartolo"}
-  #end
+    ops["monitor"].send("on-fail", "fence")
+  end
 
   #ops.each { |opt| Chef::Log.warn("XXX option-after: #{opt}") }
-  #Chef::Log.warn("XXX ops.inspect(2): #{ops.inspect}")
+  Chef::Log.warn("XXX ops.inspect(2): #{ops.inspect}")
   #Chef::Log.warn("XXX monitor.current_default(2): #{monitor.current_default}")
 
   current_agent = @current_resource.agent
