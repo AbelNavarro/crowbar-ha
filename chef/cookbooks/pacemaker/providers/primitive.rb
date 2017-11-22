@@ -127,6 +127,7 @@ def update_resource(name)
       Chef::Log.warn("XXX ops['monitor'].has_key('on-fail')")
     #  ops = op_defaults["monitor"]["on-fail"]
     else
+      ops["monitor"].send("on-fail", "fence")
       Chef::Log.warn("XXX ops['monitor'].has_key('on-fail')... NOT")
       #ops.set_unless_value_present = true
       #Chef::Log.warn("XXX ops set_unless_value_present, inspect: #{ops.inspect}")
@@ -136,7 +137,6 @@ def update_resource(name)
     end
     #ops.set["monitor"] = {"on-fail" => "bartolo"}
     #if ops["monitor"].
-    ops["monitor"].send("on-fail", "fence")
   end
 
   #ops.each { |opt| Chef::Log.warn("XXX option-after: #{opt}") }
