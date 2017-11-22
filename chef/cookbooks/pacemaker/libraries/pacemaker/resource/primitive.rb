@@ -86,7 +86,7 @@ class Pacemaker::Resource::Primitive < Pacemaker::Resource
 
     ops.sort.map do |op, attrs|
       Chef::Log.warn("XXX self.op_string(ops): ops: #{op.inspect}, attrs: #{attrs.inspect}")
-      if attrs.empty?
+      if attrs.nil? || attrs.empty?
         nil
       else
         # crm seems to append interval=0 when there are attributes, but no
