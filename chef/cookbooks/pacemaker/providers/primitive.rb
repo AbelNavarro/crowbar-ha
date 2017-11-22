@@ -130,6 +130,7 @@ def update_resource(name)
       Chef::Log.warn("XXX ops['monitor'].has_key('on-fail')... NOT")
       if ops["monitor"].is_a?(Hash)
         Chef::Log.warn("XXX ops['monitor'] is a Hash")
+	ops["monitor"].merge(op_defaults["monitor"])
       else
         Chef::Log.warn("XXX ops['monitor'] is NOT a Hash")
         ops["monitor"].send("on-fail", "fence")
