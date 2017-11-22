@@ -127,7 +127,7 @@ def update_resource(name)
       Chef::Log.warn("XXX ops['monitor'].has_key('on-fail')")
     #  ops = op_defaults["monitor"]["on-fail"]
     else
-	    if ops["monitor"].method_defined? :on-fail
+	    if ops["monitor"].method_defined? "on-fail"
               ops["monitor"].send("on-fail", "fence")
 	    end
       
