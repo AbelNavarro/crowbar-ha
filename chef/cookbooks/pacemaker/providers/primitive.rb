@@ -112,6 +112,12 @@ def update_resource(name)
   op_defaults["monitor"]["on-fail"] = "block"
 
   if ops.has_key?("monitor")
+    monitor_hash = ops.fetch("monitor")
+    if monitor_hash.has_key("on-fail")
+      Chef::Log.warn("XXX has on-fail")
+    else
+      Chef::Log.warn("XXX has NOT on-fail")
+    end
 
 	  Chef::Log.warn("XXX ops.fetch: #{ops.fetch('monitor')}")
 	  Chef::Log.warn("XXX ops.fetch: #{ops.fetch('monitor')}")
