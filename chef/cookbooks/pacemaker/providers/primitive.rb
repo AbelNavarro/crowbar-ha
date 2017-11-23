@@ -219,7 +219,7 @@ def maybe_modify_resource(name)
 end
 
 def maybe_configure_params(name, cmds, data_type)
-  Chef::Log.warn("XXX maybe_configure_params: name: #{name}, cmds: #{cmds}, data_type: #{data_type}")
+  #Chef::Log.warn("XXX maybe_configure_params: name: #{name}, cmds: #{cmds}, data_type: #{data_type}")
   configure_cmd_prefix = "crm_resource --resource #{name}"
 
   new_resource.send(data_type).each do |param, new_value|
