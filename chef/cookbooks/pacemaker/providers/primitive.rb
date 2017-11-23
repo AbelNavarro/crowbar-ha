@@ -112,37 +112,13 @@ def update_resource(name)
   op_defaults["monitor"]["on-fail"] = "block"
 
   if ops.has_key?("monitor")
-    monitor_hash = ops.fetch("monitor")
-    Chef::Log.warn("XXX monitor_hash class: #{monitor_hash.class}")
-    if monitor_hash.has_key?("on-fail")
+    monitor = ops.fetch("monitor")
+    Chef::Log.warn("XXX monitor class: #{monitor.class}")
+    if monitor.has_key?("on-fail")
       Chef::Log.warn("XXX has on-fail")
+      ops["monitor"].send("on-fail", op_defaults["monitor"]["on-fail"])
     else
       Chef::Log.warn("XXX has NOT on-fail")
-    end
-
-	  Chef::Log.warn("XXX ops.fetch: #{ops.fetch('monitor')}")
-	  Chef::Log.warn("XXX ops.fetch: #{ops.fetch('monitor')}")
-	  Chef::Log.warn("XXX ops.fetch: #{ops.fetch('monitor')}")
-	  Chef::Log.warn("XXX ops.fetch: #{ops.fetch('monitor')}")
-	  Chef::Log.warn("XXX ops.fetch: #{ops.fetch('monitor')}")
-	  Chef::Log.warn("XXX ops.fetch: #{ops.fetch('monitor')}")
-	  Chef::Log.warn("XXX ops.fetch: #{ops.fetch('monitor')}")
-	  Chef::Log.warn("XXX ops.fetch: #{ops.fetch('monitor')}")
-	  Chef::Log.warn("XXX ops.fetch: #{ops.fetch('monitor')}")
-	  Chef::Log.warn("XXX ops.fetch: #{ops.fetch('monitor')}")
-	  Chef::Log.warn("XXX ops.fetch: #{ops.fetch('monitor')}")
-	  Chef::Log.warn("XXX ops.fetch: #{ops.fetch('monitor')}")
-	  Chef::Log.warn("XXX ops.fetch: #{ops.fetch('monitor')}")
-	  Chef::Log.warn("XXX ops.fetch: #{ops.fetch('monitor')}")
-	  Chef::Log.warn("XXX ops.fetch: #{ops.fetch('monitor')}")
-	  Chef::Log.warn("XXX ops.fetch: #{ops.fetch('monitor')}")
-
-    if ops["monitor"].respond_to?("on-fail")
-      Chef::Log.warn("XXX respond_to?('on-fail')")
-      ops["monitor"].send("on-fail", "stop")
-    else
-      Chef::Log.warn("XXX respond_to?('on-fail') NOT")
-      ops["monitor"].send("on-fail", "stop")
     end
   end
 
