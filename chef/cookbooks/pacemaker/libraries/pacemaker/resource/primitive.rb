@@ -63,7 +63,7 @@ class Pacemaker::Resource::Primitive < Pacemaker::Resource
         str << continuation_line(data_string)
       end
     end
-    #Chef::Log.warn("XXX definition_from_attributes: #{str}")
+    Chef::Log.warn("XXX definition_from_attributes: #{str}")
     str
   end
 
