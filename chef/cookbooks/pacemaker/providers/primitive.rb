@@ -138,6 +138,7 @@ def update_resource(name)
           ops["monitor"].send("on-fail", "stop")
 	else
           Chef::Log.warn("XXX respond_to?('on-fail') NOT")
+          ops["monitor"].merge(op_defaults["monitor"])
         end
       
       #ops.set_unless_value_present = true
