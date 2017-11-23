@@ -76,8 +76,9 @@ end
 
 def update_resource(name)
   #Chef::Log.warn("XXX update_resource: #{name}")
-  #Chef::Log.warn("XXX @current_resource: #{@current_resource}")
-  #Chef::Log.warn("XXX new_resource: #{new_resource}")
+  Chef::Log.warn("XXX @current_resource: #{@current_resource.inspect}")
+  Chef::Log.warn("XXX new_resource: #{new_resource.inspect}")
+  Chef::Log.warn("XXX @current_resource_definition: #{@current_resource_definition.inspect}")
   ops = new_resource.op
   #ops.each { |option| Chef::Log.warn("XXX option: #{option}") }
   #Chef::Log.warn("XXX ops.has_key?(monitor): NO") unless ops.has_key?("monitor")
@@ -109,7 +110,7 @@ def update_resource(name)
   # XXX add manually op_defaults
   op_defaults = {}
   op_defaults["monitor"] = {}
-  op_defaults["monitor"]["on-fail"] = "ignore"
+  op_defaults["monitor"]["on-fail"] = "fence"
 
   if ops.has_key?("monitor")
     monitor = ops.fetch("monitor")
