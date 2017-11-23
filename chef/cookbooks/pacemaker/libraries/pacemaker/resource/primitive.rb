@@ -60,10 +60,10 @@ class Pacemaker::Resource::Primitive < Pacemaker::Resource
     %w(params meta op).each do |data_type|
       unless send(data_type).empty?
         data_string = send("#{data_type}_string")
+        Chef::Log.warn("XXX definition_from_attributes: #{data_string}")
         str << continuation_line(data_string)
       end
     end
-    Chef::Log.warn("XXX definition_from_attributes: #{str}")
     str
   end
 
