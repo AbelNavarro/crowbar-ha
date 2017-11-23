@@ -109,7 +109,7 @@ def update_resource(name)
   # XXX add manually op_defaults
   op_defaults = {}
   op_defaults["monitor"] = {}
-  op_defaults["monitor"]["on-fail"] = "block"
+  op_defaults["monitor"]["on-fail"] = "standby"
 
   if ops.has_key?("monitor")
     monitor = ops.fetch("monitor")
