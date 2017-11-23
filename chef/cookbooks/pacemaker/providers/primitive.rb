@@ -110,15 +110,10 @@ def update_resource(name)
   op_defaults = {}
   op_defaults["monitor"] = {}
   op_defaults["monitor"]["on-fail"] = "block"
-  #Chef::Log.warn("XXX op_defaults(modified): #{op_defaults}")
-  #Chef::Log.warn("XXX ops.inspect: #{ops.inspect}")
-
-  #unless !ops.has_key?("monitor") || op_defaults.nil?
-  #unless op_defaults.nil? || ops["monitor"].nil?
 
   if ops.has_key?("monitor")
 
-    ops.fetch("monitor")
+    Chef::Log.warn("XXX ops.fetch: #{ops.fetch('monitor')}")
 
     if ops["monitor"].respond_to?("on-fail")
       Chef::Log.warn("XXX respond_to?('on-fail')")
