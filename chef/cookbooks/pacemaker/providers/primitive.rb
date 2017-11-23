@@ -117,43 +117,19 @@ def update_resource(name)
   #unless op_defaults.nil? || ops["monitor"].nil?
 
   if ops.has_key?("monitor")
-    #Chef::Log.warn("XXX ops.has_key?('monitor')")
-    #Chef::Log.warn("XXX ops loop")
-    #op_defaults.each { |op_def| Chef::Log.warn("XXX op_default: #{op_def}") }
-    #ops["monitor"] = ops["monitor"].merge("on-fail" => op_defaults["monitor"]["on-fail"])
-    #monitor.default = monitor.current_default.merge("on-fail" => op_defaults["monitor"]["on-fail"])
-    #ops["monitor"] = { "on-fail" => "pepe" } 
-    #if ops["monitor"].has_key?("on-fail")
-      #Chef::Log.warn("XXX ops['monitor'].has_key('on-fail')")
-    #  ops = op_defaults["monitor"]["on-fail"]
-    #else
-      #Chef::Log.warn("XXX ops['monitor'].has_key('on-fail')... NOT")
-      #if ops["monitor"].is_a?(Hash)
-      #  Chef::Log.warn("XXX ops['monitor'] is a Hash")
-#	ops["monitor"].merge(op_defaults["monitor"])
- #     else
-        #Chef::Log.warn("XXX ops['monitor'] is NOT a Hash")
-	if ops["monitor"].respond_to?("on-fail")
-	  Chef::Log.warn("XXX respond_to?('on-fail')")
-          ops["monitor"].send("on-fail", "stop")
-	else
-          Chef::Log.warn("XXX respond_to?('on-fail') NOT")
-          ops["monitor"].merge(op_defaults["monitor"])
-        end
-      
-      #ops.set_unless_value_present = true
-      #Chef::Log.warn("XXX ops set_unless_value_present, inspect: #{ops.inspect}")
-      ##############################ops["monitor"]["on-fail"] = op_defaults["monitor"]["on-fail"]
-    #Chef::Log.warn("XXX ops['monitor'].has_key?('on-fail')") if ops["monitor"].has_key?("on-fail")
-      #ops.set_unless_value_present = false
-    #end
-    #ops.set["monitor"] = {"on-fail" => "bartolo"}
-    #if ops["monitor"].
+
+
+
+    if ops["monitor"].respond_to?("on-fail")
+      Chef::Log.warn("XXX respond_to?('on-fail')")
+      ops["monitor"].send("on-fail", "stop")
+    else
+      Chef::Log.warn("XXX respond_to?('on-fail') NOT")
+      ops["monitor"].send("on-fail", "stop")
+    end
   end
 
-  #ops.each { |opt| Chef::Log.warn("XXX option-after: #{opt}") }
   Chef::Log.warn("XXX ops.inspect(2): #{ops.inspect}")
-  #Chef::Log.warn("XXX monitor.current_default(2): #{monitor.current_default}")
 
   current_agent = @current_resource.agent
   unless current_agent.include? ":"
