@@ -85,28 +85,9 @@ def update_resource(name)
   #Chef::Log.warn("XXX ops monitor has key") unless !ops.has_key?("monitor")
   #monitor = ops["monitor"]
   Chef::Log.warn("XXX ops.inspect: #{ops.inspect}")
-  Chef::Log.warn("XXX @definition: #{@definition}")
-  #Chef::Log.warn("XXX monitor.inspect: #{monitor.inspect}")
-
-  #Chef::Log.warn("XXX ops.class: #{ops.class}")
-  #Chef::Log.warn("XXX monitor.class: #{monitor.class}")
-
-  #Chef::Log.warn("XXX ops['monitor'].has_key('on-fail')") unless ops["monitor"].has_key?("on-fail")
-
+  
   #Chef::Log.warn("XXX node[:pacemaker][:config][:op_defaults]: #{node[:pacemaker][:config][:op_defaults]}")
   #op_defaults = CrowbarPacemakerHelper.op_defaults(node)
-  #op_d = node[:pacemaker][:config][:op_defaults]
-
-  #Chef::Log.warn("XXX ops.inspect(2): #{ops.inspect}")
-  #Chef::Log.warn("XXX monitor.inspect(2): #{monitor.inspect}")
-
-  #Chef::Log.warn("XXX monitor.class: #{monitor.class}")
-  #Chef::Log.warn("XXX ops.inspect: #{ops.inspect}")
-
-  #ops.each { |op| Chef::Log.warn("XXX option: #{op}, #{op.inspect}, #{op.class}") }
-  #Chef::Log.warn("XXX ops.inspect: #{ops.inspect}")
-  
-  #Chef::Log.warn("XXX op_defaults: #{op_defaults}")
 
   # XXX add manually op_defaults
   op_defaults = {}
