@@ -76,9 +76,9 @@ end
 
 def update_resource(name)
   #Chef::Log.warn("XXX update_resource: #{name}")
-  Chef::Log.warn("XXX @current_resource: #{@current_resource.inspect}")
-  Chef::Log.warn("XXX new_resource: #{new_resource.inspect}")
-  Chef::Log.warn("XXX @current_resource_definition: #{@current_resource_definition.inspect}")
+  #Chef::Log.warn("XXX @current_resource: #{@current_resource.inspect}")
+  #Chef::Log.warn("XXX new_resource: #{new_resource.inspect}")
+  #Chef::Log.warn("XXX @current_resource_definition: #{@current_resource_definition.inspect}")
   ops = new_resource.op
   #ops.each { |option| Chef::Log.warn("XXX option: #{option}") }
   #Chef::Log.warn("XXX ops.has_key?(monitor): NO") unless ops.has_key?("monitor")
@@ -205,9 +205,9 @@ def maybe_configure_params(name, cmds, data_type)
     # "true".  So we force a string-wise comparison to adhere to
     # Postel's Law whilst minimising activity on the Chef client node.
     if current_value.to_s == new_value.to_s
-      Chef::Log.info("#{name}'s #{param} #{data_type} didn't change")
+      Chef::Log.info("XXX #{name}'s #{param} #{data_type} didn't change")
     else
-      Chef::Log.info("#{name}'s #{param} #{data_type} changed from #{current_value} to #{new_value}")
+      Chef::Log.info("XXX #{name}'s #{param} #{data_type} changed from #{current_value} to #{new_value}")
       cmd = configure_cmd_prefix +
         %' --set-parameter #{Shellwords.escape param}' +
         %' --parameter-value #{Shellwords.escape new_value}'
