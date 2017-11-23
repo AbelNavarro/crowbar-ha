@@ -85,7 +85,7 @@ def update_resource(name)
   #Chef::Log.warn("XXX ops monitor has key") unless !ops.has_key?("monitor")
   #monitor = ops["monitor"]
   Chef::Log.warn("XXX ops.inspect: #{ops.inspect}")
-  Chef::Log.warn("XXX @definition: #{@definition.inspect}")
+  Chef::Log.warn("XXX @definition: #{@definition}")
   #Chef::Log.warn("XXX monitor.inspect: #{monitor.inspect}")
 
   #Chef::Log.warn("XXX ops.class: #{ops.class}")
