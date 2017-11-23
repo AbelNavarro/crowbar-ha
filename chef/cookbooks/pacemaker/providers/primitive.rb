@@ -78,7 +78,7 @@ def update_resource(name)
   ops = new_resource.op
   Chef::Log.warn("XXX ops.inspect: #{ops.inspect}")
   #strings = params_strings
-  Chef::Log.warn("XXX params_strings: #{params_strings}")
+  Chef::Log.warn("XXX params_strings: #{params_string}")
 
   #Chef::Log.warn("XXX node[:pacemaker][:config][:op_defaults]: #{node[:pacemaker][:config][:op_defaults]}")
   #op_defaults = CrowbarPacemakerHelper.op_defaults(node)
