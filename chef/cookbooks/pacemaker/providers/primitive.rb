@@ -114,7 +114,7 @@ def update_resource(name)
   if ops.has_key?("monitor")
     monitor_hash = ops.fetch("monitor")
     Chef::Log.warn("XXX monitor_hash class: #{monitor_hash.class}")
-    if monitor_hash.has_key("on-fail")
+    if monitor_hash.has_key?("on-fail")
       Chef::Log.warn("XXX has on-fail")
     else
       Chef::Log.warn("XXX has NOT on-fail")
