@@ -128,13 +128,13 @@ def update_resource(name)
     #  ops = op_defaults["monitor"]["on-fail"]
     #else
       #Chef::Log.warn("XXX ops['monitor'].has_key('on-fail')... NOT")
-      if ops["monitor"].is_a?(Hash)
-        Chef::Log.warn("XXX ops['monitor'] is a Hash")
-	ops["monitor"].merge(op_defaults["monitor"])
-      else
+      #if ops["monitor"].is_a?(Hash)
+      #  Chef::Log.warn("XXX ops['monitor'] is a Hash")
+#	ops["monitor"].merge(op_defaults["monitor"])
+ #     else
         Chef::Log.warn("XXX ops['monitor'] is NOT a Hash")
-        ops["monitor"].send("on-fail", "fence")
-      end
+        ops["monitor"].send("on-fail", "stop")
+  #    end
       
       #ops.set_unless_value_present = true
       #Chef::Log.warn("XXX ops set_unless_value_present, inspect: #{ops.inspect}")
