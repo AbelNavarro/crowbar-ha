@@ -11,7 +11,7 @@ class Pacemaker::Resource::Primitive < Pacemaker::Resource
   attr_accessor :agent, :params, :op
 
   def initialize(*args)
-    #Chef::Log.warn("XXX initialize")
+    Chef::Log.warn("XXX initialize: #{args}")
     super(*args)
 
     @agent = nil
