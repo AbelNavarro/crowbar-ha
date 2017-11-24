@@ -98,11 +98,12 @@ def update_resource(name)
   # If op_defaults is defined and not nil, set the value
   # otherwise remove it
   if !op_defaults.nil? &&
-     op_defaults.has_key?("monitor") &&
-     op_defaults["monitor"].has_key("on-fail") &&
+     op_defaults.key?("monitor") &&
+     op_defaults["monitor"].key?("on-fail") &&
      !op_defaults["monitor"]["on-fail"].nil?
 
     Chef::Log.warn("XXX op_defaults is defined - setting value")
+
   else
     Chef::Log.warn("XXX op_defaults not defined - deleting value")
   end
