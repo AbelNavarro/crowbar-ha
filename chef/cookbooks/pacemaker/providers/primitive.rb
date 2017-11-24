@@ -77,7 +77,7 @@ end
 def update_resource(name)
   ops = new_resource.op
   Chef::Log.warn("XXX ops.inspect: #{ops.inspect}")
-  if new_resource.op.respond_to?("current_default")
+  if new_resource.op.include?("current_default")
     Chef::Log.warn("XXX current_default: #{new_resource.op.current_default}")
     Chef::Log.warn("XXX current_default.class: #{new_resource.op.current_default.class}")
   else
