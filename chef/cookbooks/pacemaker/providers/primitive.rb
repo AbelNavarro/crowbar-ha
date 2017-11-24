@@ -76,6 +76,7 @@ end
 
 def update_resource(name)
   ops = new_resource.op
+  Chef::Log.warn("XXX XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
   Chef::Log.warn("XXX ops.inspect (#{name}): #{ops.inspect}")
   if ! ops.is_a? Hash
     Chef::Log.warn("XXX current_default: #{new_resource.op.current_default}")
