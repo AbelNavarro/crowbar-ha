@@ -91,7 +91,7 @@ def update_resource(name)
   # XXX add manually op_defaults
   op_defaults = {}
   op_defaults["monitor"] = {}
-  op_defaults["monitor"]["on-fail"] = "fence"
+  op_defaults["monitor"]["on-fail"] = "block"
 
   # If the resource has a [monitor][on-fail] value from the barclamp (default)
   # then that value will be stored as @current_default. In those cases
@@ -113,7 +113,7 @@ def update_resource(name)
   end
   #end
 
-  Chef::Log.warn("XXX ops.inspect(2): #{ops.inspect}")
+  Chef::Log.warn("XXX ops.inspect(2): #{ops.inspect}\n\n\n")
 
   current_agent = @current_resource.agent
   unless current_agent.include? ":"
