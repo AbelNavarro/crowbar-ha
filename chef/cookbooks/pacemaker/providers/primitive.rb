@@ -95,13 +95,18 @@ def update_resource(name)
   op_defaults["monitor"] = {}
   op_defaults["monitor"]["on-fail"] = "block"
 
-  # If the resource has a [monitor][on-fail] value from the barclamp (default)
-  # then that value will be stored as @current_default. In those cases
-  # @current_default cannot be retrieved from new_resource.op since that value
-  # would be a Hash. We check for new_resource.op to be a Hash as an equivalent
-  # way to say that the resource has a default value for [on-fail], thus we will
-  # not overwrite it.
-  #if ! ops.is_a? Hash
+  # If op_defaults is defined and not nil, set the value
+  # otherwise remove it
+  if !op_defaults.nil? &&
+     op_defaults.has_key?("monitor") &&
+     op_defaults["monitor"].has_key("on-fail") &&
+     !op_defaults["monitor"]["on-fail"].nil?
+
+    Chef::Log.warn("XXX op_defaults is defined - setting value")
+  else
+    Chef::Log.warn("XXX op_defaults not defined - deleting value")
+  end
+
   if ops.has_key?("monitor")
     monitor = ops.fetch("monitor")
     Chef::Log.warn("XXX monitor class: #{monitor.class}")
