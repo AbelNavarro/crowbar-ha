@@ -100,7 +100,7 @@ def update_resource(name)
   # would be a Hash. We check for new_resource.op to be a Hash as an equivalent
   # way to say that the resource has a default value for [on-fail], thus we will
   # not overwrite it.
-  if ops.is_a? Mash && ops.has_key?("monitor")
+  if ops.has_key?("monitor")
     monitor = ops.fetch("monitor")
     Chef::Log.warn("XXX monitor class: #{monitor.class}")
     if monitor.has_key?("on-fail")
