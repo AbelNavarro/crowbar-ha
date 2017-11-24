@@ -93,7 +93,7 @@ def update_resource(name)
   # XXX add manually op_defaults
   op_defaults = {}
   op_defaults["monitor"] = {}
-  op_defaults["monitor"]["on-fail"] = "block"
+  op_defaults["monitor"]["on-fail"] = "restart"
 
   # If op_defaults is defined and not nil, set the value
   # otherwise remove it
@@ -108,7 +108,7 @@ def update_resource(name)
       # Ops was defined as a Hash: we will skip the on-fail value
       # should it be declared. In a Hash there's no way to know the original
       # value, so it's either overwrite or skip.
-      Chef::Log.warn("XXX ops is a Hash")
+      Chef::Log.warn("XXX ops is a Hash, not changing anything")
 
     else
       # Ops was defined as a Chef::Node::Attribute. Store the on-fail
