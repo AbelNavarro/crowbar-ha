@@ -143,7 +143,6 @@ def maybe_modify_resource(name)
   cmds = []
 
   desired_primitive = cib_object_class.from_chef_resource(new_resource)
-  Chef::Log.warn("XXX desired_primitive: #{desired_primitive.inspect}")
 
   # We deprecated setting target-role values via the meta attribute, in favor
   # of :start/:stop actions on the resource. So this should not be relied upon
