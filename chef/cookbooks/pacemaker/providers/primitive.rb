@@ -78,15 +78,15 @@ def update_resource(name)
   ops = new_resource.op
   Chef::Log.warn("XXX XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
   Chef::Log.warn("XXX ops.inspect (#{name}): #{ops.inspect}")
-  Chef::Log.warn("XXX new_resource.inspect (#{name}): #{new_resource.inspect}")
-  if ! ops.is_a? Hash
-    Chef::Log.warn("XXX current_default: #{new_resource.op.current_default}")
-    Chef::Log.warn("XXX current_default.class: #{new_resource.op.current_default.class}")
-  else
-    Chef::Log.warn("XXX no current default: #{ops.class}")
-    #Chef::Log.warn("XXX current_default: #{new_resource.op.current_default}")
-    #Chef::Log.warn("XXX current_default.class: #{new_resource.op.current_default.class}")
-  end
+  #Chef::Log.warn("XXX new_resource.inspect (#{name}): #{new_resource.inspect}")
+  #if ! ops.is_a? Hash
+  #  Chef::Log.warn("XXX current_default: #{new_resource.op.current_default}")
+  #  Chef::Log.warn("XXX current_default.class: #{new_resource.op.current_default.class}")
+  #else
+  #  Chef::Log.warn("XXX no current default: #{ops.class}")
+  #  #Chef::Log.warn("XXX current_default: #{new_resource.op.current_default}")
+  #  #Chef::Log.warn("XXX current_default.class: #{new_resource.op.current_default.class}")
+  #end
   #Chef::Log.warn("XXX node[:pacemaker][:config][:op_defaults]: #{node[:pacemaker][:config][:op_defaults]}")
   #op_defaults = CrowbarPacemakerHelper.op_defaults(node)
 
@@ -103,23 +103,32 @@ def update_resource(name)
      !op_defaults["monitor"]["on-fail"].nil?
 
     Chef::Log.warn("XXX op_defaults is defined - setting value")
+    
+    if ops.is_a? Hash
+      # Ops was defined as a Hash: we will skip the on-fail value
+      # should it be declared. In a Hash there's no way to know the original
+      # value, so it's either overwrite or skip.
+      Chef::Log.warn("XXX ops is a Hash")
+
+    else
+      # Ops was defined as a Chef::Node::Attribute. Store the on-fail
+      # default value.
+      if ops.has_key?("monitor")
+        monitor = ops.fetch("monitor")
+        Chef::Log.warn("XXX monitor class: #{monitor.class}")
+        if monitor.has_key?("on-fail")
+          Chef::Log.warn("XXX has on-fail")
+          ops["monitor"]["on-fail"] = op_defaults["monitor"]["on-fail"]
+        else
+          Chef::Log.warn("XXX has NOT on-fail")
+          ops["monitor"]["on-fail"] = op_defaults["monitor"]["on-fail"]
+        end
+      end
+    end
 
   else
     Chef::Log.warn("XXX op_defaults not defined - deleting value")
   end
-
-  if ops.has_key?("monitor")
-    monitor = ops.fetch("monitor")
-    Chef::Log.warn("XXX monitor class: #{monitor.class}")
-    if monitor.has_key?("on-fail")
-      Chef::Log.warn("XXX has on-fail")
-      ops["monitor"]["on-fail"] = op_defaults["monitor"]["on-fail"]
-    else
-      Chef::Log.warn("XXX has NOT on-fail")
-      ops["monitor"]["on-fail"] = op_defaults["monitor"]["on-fail"]
-    end
-  end
-  #end
 
   Chef::Log.warn("XXX ops.inspect(2): #{ops.inspect}\n\n\n")
 
