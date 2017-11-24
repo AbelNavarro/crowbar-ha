@@ -75,7 +75,7 @@ def create_resource(name)
 end
 
 def update_resource(name)
-  ops = new_resource.send "op"
+  ops = new_resource.send "@op"
   Chef::Log.warn("XXX XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
   Chef::Log.warn("XXX ops.inspect (#{name}): #{ops.inspect}")
   Chef::Log.warn("XXX new_resource.inspect (#{name}): #{new_resource.inspect}")
