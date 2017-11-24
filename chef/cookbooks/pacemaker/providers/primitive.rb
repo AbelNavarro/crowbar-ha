@@ -81,9 +81,9 @@ def update_resource(name)
     Chef::Log.warn("XXX current_default: #{new_resource.op.current_default}")
     Chef::Log.warn("XXX current_default.class: #{new_resource.op.current_default.class}")
   else
-	  Chef::Log.warn("XXX no current default: #{new_resource.op.class}")
-    Chef::Log.warn("XXX current_default: #{new_resource.op.current_default}")
-    Chef::Log.warn("XXX current_default.class: #{new_resource.op.current_default.class}")
+    Chef::Log.warn("XXX no current default: #{new_resource.op.class}")
+    #Chef::Log.warn("XXX current_default: #{new_resource.op.current_default}")
+    #Chef::Log.warn("XXX current_default.class: #{new_resource.op.current_default.class}")
   end
   #Chef::Log.warn("XXX node[:pacemaker][:config][:op_defaults]: #{node[:pacemaker][:config][:op_defaults]}")
   #op_defaults = CrowbarPacemakerHelper.op_defaults(node)
@@ -93,7 +93,13 @@ def update_resource(name)
   op_defaults["monitor"] = {}
   op_defaults["monitor"]["on-fail"] = "fence"
 
-  if ops.has_key?("monitor")
+  # If the resource has a [monitor][on-fail] value from the barclamp (default)
+  # then that value will be stored as @current_default. In those cases
+  # @current_default cannot be retrieved from new_resource.op since that value
+  # would be a Hash. We check for new_resource.op to be a Hash as an equivalent
+  # way to say that the resource has a default value for [on-fail], thus we will
+  # not overwrite it.
+  if new_resource.op.is_a? Mash && ops.has_key?("monitor")
     monitor = ops.fetch("monitor")
     Chef::Log.warn("XXX monitor class: #{monitor.class}")
     if monitor.has_key?("on-fail")
