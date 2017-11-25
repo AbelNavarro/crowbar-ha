@@ -142,7 +142,6 @@ def update_resource(name)
         Chef::Log.warn("XXX monitor class: #{monitor.class}")
         if monitor.has_key?("on-fail")
           Chef::Log.warn("XXX has on-fail")
-          #ops["monitor"]["on-fail"] = nil
           Chef::Log.warn("XXX monitor.inspect: #{monitor.inspect}")
           monitor.delete("on-fail")
           Chef::Log.warn("XXX monitor.inspect: #{monitor.inspect}")
@@ -186,6 +185,7 @@ def maybe_modify_resource(name)
   cmds = []
 
   desired_primitive = cib_object_class.from_chef_resource(new_resource)
+  Chef::Log.warn("XXX desired_primitive: #{desired_primitive.inspect}")
 
   # We deprecated setting target-role values via the meta attribute, in favor
   # of :start/:stop actions on the resource. So this should not be relied upon
