@@ -144,7 +144,7 @@ def update_resource(name)
           Chef::Log.warn("XXX has on-fail")
           #ops["monitor"]["on-fail"] = nil
           Chef::Log.warn("XXX monitor.inspect: #{monitor.inspect}")
-          monitor.delete["on-fail"]
+          monitor.delete("on-fail")
           Chef::Log.warn("XXX monitor.inspect: #{monitor.inspect}")
         else
           Chef::Log.warn("XXX has NOT on-fail")
