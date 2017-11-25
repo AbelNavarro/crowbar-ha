@@ -210,7 +210,7 @@ def maybe_modify_resource(name)
   desired_primitive.meta.delete("target-role")
 
   if desired_primitive.op_string != @current_cib_object.op_string
-    Chef::Log.debug "op changed from [#{@current_cib_object.op_string}] to [#{desired_primitive.op_string}]"
+    Chef::Log.warn "op changed from [#{@current_cib_object.op_string}] to [#{desired_primitive.op_string}]"
     cmds = [desired_primitive.reconfigure_command]
   else
     maybe_configure_params(name, cmds, :params)
