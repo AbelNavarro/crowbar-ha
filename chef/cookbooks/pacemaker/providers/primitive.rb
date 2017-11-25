@@ -142,7 +142,8 @@ def update_resource(name)
         Chef::Log.warn("XXX monitor class: #{monitor.class}")
         if monitor.has_key?("on-fail")
           Chef::Log.warn("XXX has on-fail")
-          ops["monitor"]["on-fail"] = nil
+          #ops["monitor"]["on-fail"] = nil
+          monitor.clear
         else
           Chef::Log.warn("XXX has NOT on-fail")
           ops["monitor"]["on-fail"] = nil
