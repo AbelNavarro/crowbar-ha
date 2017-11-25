@@ -123,6 +123,7 @@ def update_resource(name)
           Chef::Log.warn("XXX has NOT on-fail")
           ops["monitor"]["on-fail"] = op_defaults["monitor"]["on-fail"]
         end
+        ops.current_nesting_level.pop
       end
     end
 
