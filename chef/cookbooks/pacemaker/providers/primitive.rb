@@ -121,7 +121,7 @@ def update_resource(name)
           ops["monitor"]["on-fail"] = op_defaults["monitor"]["on-fail"]
         else
           Chef::Log.warn("XXX has NOT on-fail")
-          ops["monitor"]["on-fail"] = op_defaults["monitor"]["on-fail"]
+          #ops["monitor"]["on-fail"] = op_defaults["monitor"]["on-fail"]
         end
       end
     end
@@ -140,13 +140,15 @@ def update_resource(name)
       if ops.has_key?("monitor")
         monitor = ops.fetch("monitor")
         Chef::Log.warn("XXX monitor class: #{monitor.class}")
+        on_fail = monitor.fetch("on-fail")
+        Chef::Log.warn("XXX on-fail class: #{on_fail.class}")
         if monitor.has_key?("on-fail")
           Chef::Log.warn("XXX has on-fail")
           #ops["monitor"]["on-fail"] = nil
           monitor.delete["on-fail"]
         else
           Chef::Log.warn("XXX has NOT on-fail")
-          ops["monitor"]["on-fail"] = nil
+          #ops["monitor"]["on-fail"] = nil
         end
       end
     end
