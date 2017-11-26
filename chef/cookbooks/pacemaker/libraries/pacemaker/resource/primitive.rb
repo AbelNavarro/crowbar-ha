@@ -81,9 +81,8 @@ class Pacemaker::Resource::Primitive < Pacemaker::Resource
     #ops.each do |val|
     #  Chef::Log.warn("XXX op_strings: val: #{val}")
     #end
-
-    #ops.sort.map do |op, attrs|
-    ops.map do |op, attrs|
+    ops.reset
+    ops.sort.map do |op, attrs|
       Chef::Log.warn("XXX self.op_string(ops): ops: #{op.inspect}, attrs: #{attrs.inspect}")
       if attrs.nil? || attrs.empty? # XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         nil
