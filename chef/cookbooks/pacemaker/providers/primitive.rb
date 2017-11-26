@@ -212,8 +212,8 @@ def maybe_modify_resource(name)
   
   Chef::Log.warn("XXX desired_primitive: #{desired_primitive.op_string}")
   Chef::Log.warn("XXX @current_cib_object: #{@current_cib_object.op_string}")
-  Chef::Log.warn("XXX desired_primitive: #{desired_primitive.inspect}")
-  Chef::Log.warn("XXX @current_cib_object: #{@current_cib_object.inspect}")
+  #Chef::Log.warn("XXX desired_primitive: #{desired_primitive.inspect}")
+  #Chef::Log.warn("XXX @current_cib_object: #{@current_cib_object.inspect}")
 
   if desired_primitive.op_string != @current_cib_object.op_string
     Chef::Log.warn "op changed from [#{@current_cib_object.op_string}] to [#{desired_primitive.op_string}]"
