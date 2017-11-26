@@ -93,7 +93,7 @@ def update_resource(name)
   # XXX add manually op_defaults
   op_defaults = {}
   op_defaults["monitor"] = {}
-  op_defaults["monitor"]["on-fail"] = "restart"
+  #op_defaults["monitor"]["on-fail"] = "restart"
 
   # If op_defaults is defined and not nil, set the value
   # otherwise remove it
@@ -116,13 +116,13 @@ def update_resource(name)
       if ops.has_key?("monitor")
         monitor = ops.fetch("monitor")
         #Chef::Log.warn("XXX monitor class: #{monitor.class}")
-        if monitor.has_key?("on-fail")
-          Chef::Log.warn("XXX has on-fail")
+        #if monitor.has_key?("on-fail")
+          #Chef::Log.warn("XXX has on-fail")
           ops["monitor"] = op_defaults["monitor"]
-        else
-          Chef::Log.warn("XXX has NOT on-fail")
-          ops["monitor"] = op_defaults["monitor"]
-        end
+        #else
+          #Chef::Log.warn("XXX has NOT on-fail")
+          #ops["monitor"] = op_defaults["monitor"]
+        #end
       end
     end
 
