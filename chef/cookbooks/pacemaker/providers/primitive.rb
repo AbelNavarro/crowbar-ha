@@ -93,7 +93,7 @@ def update_resource(name)
   # XXX add manually op_defaults
   op_defaults = {}
   op_defaults["monitor"] = {}
-  #op_defaults["monitor"]["on-fail"] = "restart"
+  op_defaults["monitor"]["on-fail"] = "block"
 
   # If op_defaults is defined and not nil, set the value
   # otherwise remove it
@@ -145,6 +145,10 @@ def update_resource(name)
           #Chef::Log.warn("XXX monitor.inspect: #{monitor.inspect}")
           #monitor.delete("on-fail")
           ops["monitor"].delete("on-fail")
+          
+          # reset current nesting level
+          ops = new_resource.op
+
           #Chef::Log.warn("XXX monitor.inspect: #{monitor.inspect}")
         else
           Chef::Log.warn("XXX has NOT on-fail")
