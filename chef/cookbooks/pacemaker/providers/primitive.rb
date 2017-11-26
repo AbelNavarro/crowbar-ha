@@ -93,7 +93,7 @@ def update_resource(name)
   # XXX add manually op_defaults
   op_defaults = {}
   op_defaults["monitor"] = {}
-  op_defaults["monitor"]["on-fail"] = "standby"
+  op_defaults["monitor"]["on-fail"] = "fence"
 
   # If op_defaults is defined and not nil, set the value
   # otherwise remove it
