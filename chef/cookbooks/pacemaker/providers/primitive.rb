@@ -139,7 +139,7 @@ def update_resource(name)
       # default value.
       if ops.has_key?("monitor")
         monitor = ops.fetch("monitor")
-        Chef::Log.warn("XXX monitor class: #{monitor.class}")
+        #Chef::Log.warn("XXX monitor class: #{monitor.class}")
         if monitor.has_key?("on-fail")
           Chef::Log.warn("XXX has on-fail")
           #Chef::Log.warn("XXX monitor.inspect: #{monitor.inspect}")
