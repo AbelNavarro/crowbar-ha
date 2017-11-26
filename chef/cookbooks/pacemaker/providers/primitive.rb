@@ -93,7 +93,7 @@ def update_resource(name)
   # XXX add manually op_defaults
   op_defaults = {}
   op_defaults["monitor"] = {}
-  op_defaults["monitor"]["on-fail"] = "fence"
+  #op_defaults["monitor"]["on-fail"] = "fence"
 
   # If op_defaults is defined and not nil, set the value
   # otherwise remove it
@@ -115,15 +115,13 @@ def update_resource(name)
       # default value.
       if ops.has_key?("monitor")
         monitor = ops.fetch("monitor")
-        Chef::Log.warn("XXX monitor class: #{monitor.class}")
+        #Chef::Log.warn("XXX monitor class: #{monitor.class}")
         if monitor.has_key?("on-fail")
           Chef::Log.warn("XXX has on-fail")
           ops["monitor"] = op_defaults["monitor"]
-          #ops["monitor"]["on-fail"] = op_defaults["monitor"]["on-fail"] unless name == "ceilometer-central"
         else
           Chef::Log.warn("XXX has NOT on-fail")
           ops["monitor"] = op_defaults["monitor"]
-          #ops["monitor"]["on-fail"] = op_defaults["monitor"]["on-fail"]
         end
       end
     end
