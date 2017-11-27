@@ -402,6 +402,11 @@ module CrowbarPacemakerHelper
   def self.op_defaults(node)
     return nil unless is_cluster_founder?(node)
 
-    node[:pacemaker][:config][:op_defaults]
+    if node[:pacemaker].nil? || node[:pacemaker][:op_defaults].nil?
+      return nil
+    end
+
+    node[:pacemaker][:op_defaults].to_hash
   end
+
 end

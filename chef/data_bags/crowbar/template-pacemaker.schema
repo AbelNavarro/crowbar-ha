@@ -138,7 +138,7 @@
                   "type": "map",
                   "required": true,
                   "mapping": {
-                    "on-fail": { "type": "str", "required": true, "pattern": "/^ignore$|^block$|^stop|^restart|^fence|^standby$/"}
+                    "on-fail": { "type": "str", "required": true, "pattern": "/^ignore$|^block$|^stop$|^restart$|^fence$|^standby$|^$/"}
                   }
                 }
               }

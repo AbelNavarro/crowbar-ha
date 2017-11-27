@@ -51,7 +51,7 @@
       "clone_stateless_services": true,
       "op_defaults": {
         "monitor": {
-          "on-fail": "block"
+          "on-fail": ""
         }
       }
     }
