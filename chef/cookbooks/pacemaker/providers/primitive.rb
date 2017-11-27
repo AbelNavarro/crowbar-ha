@@ -70,6 +70,55 @@ def create_resource(name)
 end
 
 def update_resource(name)
+  ops = new_resource.op
+  op_defaults = CrowbarPacemakerHelper.op_defaults(node)
+
+  # If op_defaults is defined and not nil, set the value
+  # otherwise remove it
+  if !op_defaults.nil? &&
+     op_defaults.key?("monitor") &&
+     op_defaults["monitor"].key?("on-fail") &&
+     !op_defaults["monitor"]["on-fail"].blank?
+
+    if ops.is_a? Hash
+      # Ops was defined as a Hash: we will skip the on-fail value
+      # should it be declared. In a Hash there's no way to know the original
+      # value, so it's either overwrite or skip.
+
+    else
+      # Ops was defined as a Chef::Node::Attribute. Store the on-fail
+      # default value.
+      if ops.has_key?("monitor")
+        monitor = ops.fetch("monitor")
+        ops["monitor"] = op_defaults["monitor"]
+      end
+    end
+
+  else
+    if ops.is_a? Hash
+      # Ops was defined as a Hash: we will skip the on-fail value
+      # should it be declared. In a Hash there's no way to know the original
+      # value, so it's either overwrite or skip.
+
+    else
+      # Ops was defined as a Chef::Node::Attribute. Store the on-fail
+      # default value.
+
+      # The 'current_normal' nesting level contains the values we have set
+      # in the previous section. The 'current_default' nesting level contains
+      # those values set in the recipe's attributes and are unchanged by
+      # this code
+      if ops.current_normal.has_key?("monitor")
+        monitor = ops.current_normal.fetch("monitor")
+        if monitor.has_key?("on-fail")
+          monitor.delete("on-fail")
+          ops["monitor"] = monitor
+        end
+      end
+    end
+
+  end
+
   current_agent = @current_resource.agent
   unless current_agent.include? ":"
     current_agent = "ocf:heartbeat:" + current_agent
