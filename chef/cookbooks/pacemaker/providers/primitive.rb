@@ -77,7 +77,37 @@ def op_defaults(node)
 end
 
 def update_resource(name)
-  ops = new_resource.op
+  current_agent = @current_resource.agent
+  unless current_agent.include? ":"
+    current_agent = "ocf:heartbeat:" + current_agent
+  end
+
+  new_agent = new_resource.agent
+  unless new_agent.include? ":"
+    new_agent = "ocf:heartbeat:" + new_agent
+  end
+
+  if current_agent != new_agent
+    raise format(
+      "Existing %s has agent '%s' but recipe wanted '%s'",
+      @current_cib_object, @current_resource.agent, new_resource.agent
+    )
+  end
+
+  maybe_modify_resource(name)
+end
+
+def maybe_modify_resource(name)
+  deprecate_target_role
+
+  Chef::Log.info "Checking existing #{@current_cib_object} for modifications"
+
+  cmds = []
+
+  Chef::Log.warn("XXX new_resource: #{new_resource.inspect}")
+  mod_resource = new_resource.dup
+  ops = mod_resource.op.dup
+
   op_defaults = op_defaults(node)
 
   # If op_defaults is defined and not nil, set the value
@@ -124,34 +154,9 @@ def update_resource(name)
 
   end
 
-  current_agent = @current_resource.agent
-  unless current_agent.include? ":"
-    current_agent = "ocf:heartbeat:" + current_agent
-  end
-
-  new_agent = new_resource.agent
-  unless new_agent.include? ":"
-    new_agent = "ocf:heartbeat:" + new_agent
-  end
-
-  if current_agent != new_agent
-    raise format(
-      "Existing %s has agent '%s' but recipe wanted '%s'",
-      @current_cib_object, @current_resource.agent, new_resource.agent
-    )
-  end
-
-  maybe_modify_resource(name)
-end
-
-def maybe_modify_resource(name)
-  deprecate_target_role
-
-  Chef::Log.info "Checking existing #{@current_cib_object} for modifications"
-
-  cmds = []
-
-  desired_primitive = cib_object_class.from_chef_resource(new_resource)
+  desired_primitive = cib_object_class.from_chef_resource(mod_resource)
+  Chef::Log.warn("XXX desired_primitive: #{desired_primitive.inspect}")
+  Chef::Log.warn("XXX desired_primitive op_string: #{desired_primitive.op_string}")
 
   # We deprecated setting target-role values via the meta attribute, in favor
   # of :start/:stop actions on the resource. So this should not be relied upon
